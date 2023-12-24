@@ -1,20 +1,20 @@
 import {Component} from "react";
 import {Link} from "react-router-dom";
-
+import logo from "../../../images/tour2.jpg"
 
 
 export class Navbar extends Component {
     render() {
         return (
             <>
-                <header className="sticky bg-blue-500 inset-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg">
+                <header className="sticky bg-blue-500 inset-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg rounded">
                     <nav
                         className="mx-auto flex max-w-8xl gap-8 px-6 transition-all duration-200 ease-in-out lg:px-4 py-4">
                         <div className="relative flex items-center ml">
                             <h1 className="text-[15px] ml-2 font-bold">Travel System</h1>
                             <a href="/">
-                                <img className="ml-8" src="https://www.svgrepo.com/show/499831/target.svg" loading="lazy"
-                                       width="32" height="32"/></a>
+                                <img className="ml-8 rounded-full" src={logo} loading="lazy"
+                                       width="42" height="32"/></a>
                         </div>
                         <ul className="hidden items-center justify-center gap-10 md:flex ml-4">
                             <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">

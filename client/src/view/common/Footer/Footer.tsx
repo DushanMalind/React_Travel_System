@@ -127,7 +127,7 @@ export class Footer extends Component {
                                     Tailwindow. All Rights Reserved.
                                 </div>
                                 <div className="px-4 w-full text-center sm:w-auto sm:text-left">
-                                    Made with ❤️ by Tailwindow.
+                                    Made with ❤️ by Dushan.
                                 </div>
                             </div>
                         </div>
