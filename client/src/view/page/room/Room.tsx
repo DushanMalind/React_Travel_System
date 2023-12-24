@@ -19,7 +19,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room1}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -54,7 +54,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room2}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -89,7 +89,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room3}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -124,7 +124,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room4}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -159,7 +159,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room5}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -194,7 +194,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room6}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -229,7 +229,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room7}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
@@ -264,7 +264,7 @@ export class Room extends Component {
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
+                        <img className="w-full" src={room8}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm font-medium">Room
