@@ -7,7 +7,7 @@ export class Navbar extends Component {
     render() {
         return (
             <>
-                <header className="sticky bg-blue-500 inset-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg rounded">
+                <header className="sticky bg-blue-400 inset-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-lg rounded">
                     <nav
                         className="mx-auto flex max-w-8xl gap-8 px-6 transition-all duration-200 ease-in-out lg:px-4 py-4">
                         <div className="relative flex items-center ml">
@@ -24,7 +24,9 @@ export class Navbar extends Component {
                                 </a>
                             </li>
                             <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                                <a href="#">About</a>
+                                <a href="#">
+                                    <Link to="about">About</Link>
+                                </a>
                             </li>
                             <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
                                 <a href="#">Rooms</a>
