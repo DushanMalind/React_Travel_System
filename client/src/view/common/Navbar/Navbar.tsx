@@ -29,7 +29,9 @@ export class Navbar extends Component {
                                 </a>
                             </li>
                             <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
-                                <a href="#">Rooms</a>
+                                <a href="#">
+                                    <Link to="room">Rooms</Link>
+                                </a>
                             </li>
                             <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
                                 <a href="#">Contact</a>
