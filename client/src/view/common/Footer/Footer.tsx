@@ -3,7 +3,7 @@ import {Component} from "react";
 export class Footer extends Component {
     render() {
         return (
-            <div className=" mx-auto flex mt-28 ">
+            <div className="mt-8">
                 {/*  <p className="tex-[10px] text-[#e645824] p-1 pr-4 hover:text-[#FF0000]">CopyRight 2023
                    </p>
                 <h1 className="text-2xl text-center text-[#e645824]">This is Footer</h1>
