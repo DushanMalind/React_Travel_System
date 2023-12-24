@@ -25,9 +25,9 @@ export class Footer extends Component {
                                                         <circle cx="259" cy="156" r="40" fill="#fff"></circle>
                                                         <circle cx="369" cy="286" r="40" fill="#2962FF"></circle>
                                                     </g>
-                                                    <text fill="white" font-family="Nunito-Bold, Nunito" font-size="512"
+                                                    <text fill="white" font-family="Nunito-Bold, Nunito" font-size="420"
                                                           font-weight="bold">
-                                                        <tspan x="654" y="518">Tailwindow</tspan>
+                                                        <tspan x="654" y="518">Travel System</tspan>
                                                     </text>
                                                 </g>
                                             </g>
