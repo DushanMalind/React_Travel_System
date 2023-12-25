@@ -8,7 +8,7 @@ export class SignIn extends Component {
             <>
 
 
-                <div className="h-full bg-gradient-to-bl from-blue-500 to-green-500 text-gray-900">
+                <div className="min-h-screen bg-gradient-to-bl from-blue-500 to-green-500 text-gray-900   justify-center">
 
                     <div className="mx-auto">
                         <div className="flex justify-center px-6 py-12">
