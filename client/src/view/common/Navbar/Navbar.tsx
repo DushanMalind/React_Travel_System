@@ -44,11 +44,14 @@ export class Navbar extends Component {
                         <div className="hidden items-center justify-center gap-6 md:flex mr-8">
                         <a href="#" className="rounded-md bg-gradient-to-br bg-green-400 to-emerald-400 px-3 py-1.5 font-dm
                                text-sm font-medium text-white shadow-md shadow-green-400/50 transition-transform duration-200
-                               ease-in-out hover:scale-[1.03]">Login In</a>
+                               ease-in-out hover:scale-[1.03]">
+                             <Link to="/login">Login In</Link>
+                        </a>
                             <a href="#"
                                className="rounded-md bg-gradient-to-br from-green-600 to-emerald-400 px-3 py-1.5 font-dm
                                text-sm font-medium text-white shadow-md shadow-green-400/50 transition-transform duration-200
-                               ease-in-out hover:scale-[1.03]">Sign in
+                               ease-in-out hover:scale-[1.03]">
+                                <Link to="/sign">Sign in</Link>
                             </a>
                         </div>
                         <div className="relative flex items-center justify-center md:hidden ">
