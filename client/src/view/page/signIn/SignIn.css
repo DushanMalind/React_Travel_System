@@ -1,0 +1,17 @@
+#signContent
+{
+
+    background-image: url("../../../images/room1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.4);
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    position: relative;
+    height: auto;
+    border-radius: 0 0 8px 8px;
+    padding: 20px;
+    font-weight: bold;
+    color: white;
+    transition: 0.5s;
+}
