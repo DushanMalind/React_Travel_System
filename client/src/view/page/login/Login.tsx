@@ -76,6 +76,13 @@ export class Login extends Component {
                                             </a>
                                             <span className="border-b w-1/5 md:w-1/4"></span>
                                         </div>
+                                        <div className="mt-4 flex items-center justify-between">
+                                            <span className="border-b w-1/5 md:w-1/4"></span>
+                                            <a href="#" className="text-xs text-gray-500 uppercase">
+                                                <Link to="/home">Home Page</Link>
+                                            </a>
+                                            <span className="border-b w-1/5 md:w-1/4"></span>
+                                        </div>
                                         <p className="mt-6 text-xs text-gray-600 text-center">
                                             I agree to abide by Cartesian Kinetics
                                             <a href="#" className="border-b border-gray-500 border-dotted">
