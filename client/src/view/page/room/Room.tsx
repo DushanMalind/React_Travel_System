@@ -10,16 +10,53 @@ import room8 from "../../../images/room8.jpg"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Product} from "../../common/product/Product";
 
 
 export class Room extends Component {
+
+  /*  private api:any;*/
+
+    constructor(props:{} | Readonly<{}>) {
+        super(props);
+        this.state={
+            data:[],
+        }
+    }
+
+    componentDidMount() {
+        this.fetchData()
+    }
+
+    fetchData= async () =>{
+        try {
+            const response=await fetch('/product.json');
+            const jsonData=await response.json();
+            console.log(jsonData);
+            this.setState({data:jsonData});
+        }catch (error){
+            console.log("Data NOT Loard",error)
+        }
+    }
+
     render() {
+
+
         // @ts-ignore
+        const {data}=this.state;
+
+
         return (
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
 
-                <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
+                {
+                    data.map((product:any)=>(
+                        <Product key={product.id} data={product}/>
+                    ))
+                }
+
+         {/*       <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
                         <img className="w-full" src={room1}
@@ -33,9 +70,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -71,9 +108,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -107,9 +144,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -143,9 +180,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -179,9 +216,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -215,9 +252,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -251,9 +288,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -287,9 +324,9 @@ export class Room extends Component {
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">Product Title</h3>
-                            {/*<span
+                            <span
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
+                                uppercase font-semibold tracking-wide ml-2">New</span>
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 3 beds &bull; 2 baths
                             </div>
@@ -306,7 +343,7 @@ export class Room extends Component {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>*/}
 
 
             </div>
@@ -314,27 +351,4 @@ export class Room extends Component {
         );
     }
 
-    private onSendButtonClick =() =>{
-        toast('🦄You Have Login  Account!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-
-          /* toast.success("You Have Login  Account",{
-                position:"top-right",
-                autoClose:5000,
-                hideProgressBar:false,
-                closeOnClick:true,
-                pauseOnHover:true,
-                draggable:true,
-                progress:undefined,
-
-            })*/
-    }
 }
