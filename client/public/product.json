@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "room": "Room",
+    "image": "room1.jpg",
+    "title": "Product Title 1",
+    "roomsCount":"3 beds &bull; 2 baths",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante vel eros fermentum faucibus sit amet euismod lorem.",
+    "price": "$19.99"
+  },
+
+  {
+    "id": 2,
+    "room": "Room",
+    "image": "room1.jpg",
+    "title": "Product Title 1",
+    "roomsCount":"3 beds &bull; 2 baths",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae ante vel eros fermentum faucibus sit amet euismod lorem.",
+    "price": "$19.99"
+  }
+]
