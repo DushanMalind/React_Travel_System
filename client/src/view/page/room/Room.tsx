@@ -8,17 +8,18 @@ import room6 from "../../../images/room6.jpg"
 import room7 from "../../../images/room7.jpg"
 import room8 from "../../../images/room8.jpg"
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+/*import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';*/
 import {Product} from "../../common/product/Product";
-
+import axios from "axios";
 
 export class Room extends Component {
 
-  /*  private api:any;*/
+    private api:any;
 
     constructor(props:{} | Readonly<{}>) {
         super(props);
+        this.api=axios.create({baseURL:`http://localhost:4000`})
         this.state={
             data:[],
         }
@@ -30,12 +31,18 @@ export class Room extends Component {
 
     fetchData= async () =>{
         try {
-            const response=await fetch('/product.json');
+            /*const response=await fetch('/product.json');
             const jsonData=await response.json();
             console.log(jsonData);
-            this.setState({data:jsonData});
+            this.setState({data:jsonData});*/
+            this.api.get('/product/all').then((res:{data:any}) =>{
+                const jsonData=res.data;
+                this.setState({data:jsonData});
+            }).catch((error:any) =>{
+               console.log("Axios Error",error);
+            });
         }catch (error){
-            console.log("Data NOT Loard",error)
+            console.log("Data NOT Loard",error);
         }
     }
 
