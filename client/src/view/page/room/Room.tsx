@@ -8,6 +8,9 @@ import room6 from "../../../images/room6.jpg"
 import room7 from "../../../images/room7.jpg"
 import room8 from "../../../images/room8.jpg"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export class Room extends Component {
     render() {
@@ -43,8 +46,11 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={this.onSendButtonClick}>
                                 Buy Now
+
+                                <ToastContainer/>
+
                             </button>
                         </div>
                     </div>
@@ -78,8 +84,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -113,8 +120,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -148,8 +156,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -183,8 +192,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -218,8 +228,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -253,8 +264,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -288,8 +300,9 @@ export class Room extends Component {
                             vel eros fermentum faucibus sit amet euismod lorem.</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">$19.99</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"  onClick={this.onSendButtonClick}>
                                 Buy Now
+                                <ToastContainer/>
                             </button>
                         </div>
                     </div>
@@ -299,5 +312,29 @@ export class Room extends Component {
             </div>
 
         );
+    }
+
+    private onSendButtonClick =() =>{
+        toast('🦄You Have Login  Account!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+          /* toast.success("You Have Login  Account",{
+                position:"top-right",
+                autoClose:5000,
+                hideProgressBar:false,
+                closeOnClick:true,
+                pauseOnHover:true,
+                draggable:true,
+                progress:undefined,
+
+            })*/
     }
 }
