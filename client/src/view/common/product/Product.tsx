@@ -22,7 +22,16 @@ export class Product extends Component <ProductProps,ProductState>{
 
     render() {
 
-        const buttonText = this.state.isButtonDisabled ? 'Login By Room' : 'By Now';
+        const buttonText = this.state.isButtonDisabled ? 'Login Account' : 'By Now';
+
+        const buttonStyle = {
+            backgroundColor: this.state.isButtonDisabled ? 'gray' : 'bg-blue-500',
+            color: 'white',
+            fontWeight: 'bold',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: this.state.isButtonDisabled ? 'not-allowed' : 'pointer',
+        };
 
         const {data}= this.props;
         const image=require(`../../../images/${data.image}`);
@@ -56,7 +65,8 @@ export class Product extends Component <ProductProps,ProductState>{
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">{data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
-                            px-4 rounded" onClick={this.onSendButtonClick} disabled={this.state.isButtonDisabled}>
+                            px-4 rounded" onClick={this.onSendButtonClick} disabled={this.state.isButtonDisabled}
+                                    style={buttonStyle}>
                                 {/*Buy Now*/}
                                 {buttonText}
                                 <ToastContainer/>
@@ -72,7 +82,7 @@ export class Product extends Component <ProductProps,ProductState>{
     private onSendButtonClick =() => {
 
 
-        toast('🦄You Have Login  Account!', {
+        toast('🦄You Have Login  Account Disable Button!', {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -89,7 +99,7 @@ export class Product extends Component <ProductProps,ProductState>{
 
         setInterval(() => {
             this.setState({ isButtonDisabled: true });
-        }, 2000);
+        }, 1000);
 
         /*setTimeout(() => {
             this.setState({ isButtonDisabled: false });
