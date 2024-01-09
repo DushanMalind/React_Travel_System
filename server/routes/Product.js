@@ -5,13 +5,15 @@ const productController=require("../controller/ProductController");
 
 
 
-router.get('/all', function(req, res, next) {
+/*router.get('/all', function(req, res, next) {
   res.send(
       res.send(productList)
   );
-});
+});*/
 
-/*router.get('/all',productController.getAllProduct);*/
+router.get('/all',productController.getAllProduct);
+
+router.post('/save',productController.saveProduct);
 
 
 module.exports=router;

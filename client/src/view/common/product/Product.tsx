@@ -63,7 +63,7 @@ export class Product extends Component <ProductProps,ProductState>{
 
                         <p className="text-gray-600 text-sm mb-4">{data.description}</p>
                         <div className="flex items-center justify-between">
-                            <span className="font-bold text-lg">{data.price}</span>
+                            <span className="font-bold text-lg">${data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
                             px-4 rounded" onClick={this.onSendButtonClick} disabled={this.state.isButtonDisabled}
                                     style={buttonStyle}>
