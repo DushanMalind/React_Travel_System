@@ -7,6 +7,7 @@ interface ProductProps {
 
 interface ProductState {
     isActive: boolean
+    isButtonDisabled: boolean
 }
 
 export class Product extends Component <ProductProps,ProductState>{
@@ -14,11 +15,14 @@ export class Product extends Component <ProductProps,ProductState>{
     constructor(props:ProductProps) {
         super(props);
         this.state={
-            isActive:false
+            isActive:false,
+            isButtonDisabled: false
         }
     }
 
     render() {
+
+        const buttonText = this.state.isButtonDisabled ? 'Login By Room' : 'By Now';
 
         const {data}= this.props;
         const image=require(`../../../images/${data.image}`);
@@ -51,8 +55,10 @@ export class Product extends Component <ProductProps,ProductState>{
                         <p className="text-gray-600 text-sm mb-4">{data.description}</p>
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">{data.price}</span>
-                            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" onClick={this.onSendButtonClick}>
-                                Buy Now
+                            <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
+                            px-4 rounded" onClick={this.onSendButtonClick} disabled={this.state.isButtonDisabled}>
+                                {/*Buy Now*/}
+                                {buttonText}
                                 <ToastContainer/>
                             </button>
                         </div>
@@ -62,7 +68,10 @@ export class Product extends Component <ProductProps,ProductState>{
 
         );
     }
+
     private onSendButtonClick =() => {
+
+
         toast('🦄You Have Login  Account!', {
             position: "top-right",
             autoClose: 5000,
@@ -73,5 +82,20 @@ export class Product extends Component <ProductProps,ProductState>{
             progress: undefined,
             theme: "light",
         });
+
+        this.setState({isButtonDisabled:false
+        });
+
+
+        setInterval(() => {
+            this.setState({ isButtonDisabled: true });
+        }, 2000);
+
+        /*setTimeout(() => {
+            this.setState({ isButtonDisabled: false });
+        }, 5000);*/
+
+
+
     }
 }
