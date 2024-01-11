@@ -13,12 +13,19 @@ DBConnection().then(r=>console.log(r));
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/Product');
 var userRouter = require('./routes/user');
+var signUserRouter=require('./routes/SignUser');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(express.json({ limit: '20mb' }));
+
+// Increase payload size limit for URL-encoded data
+app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -34,6 +41,7 @@ app.options('*',cors());
 app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/user', userRouter);
+app.use('/SignUser',signUserRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
