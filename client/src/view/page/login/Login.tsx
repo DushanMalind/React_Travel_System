@@ -2,7 +2,37 @@ import {Component} from "react";
 import './login.css'
 import logo from "../../../images/tour10.jpg"
 import {Link} from "react-router-dom";
-export class Login extends Component {
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+
+interface LoginProps {
+    data: any
+}
+
+interface LoginState {
+    email: string,
+    password: string,
+    /*token: string*/
+}
+
+export class Login extends Component<LoginProps,LoginState> {
+
+    private api:any;
+
+    constructor(props:any) {
+        super(props);
+        this.api = axios.create({baseURL:`http://localhost:4000`});
+        this.state={
+            email:'',
+            password:'',
+            /*token:''*/
+        }
+        this.handleMessageInputOnChange=this.handleMessageInputOnChange.bind(this);
+    }
+
     render() {
         return (
             <>
@@ -52,11 +82,12 @@ export class Login extends Component {
                                     <div className="mx-auto max-w-xs">
                                         <input
                                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                            type="email" placeholder="Email"/>
+                                            type="email" name="email" value={this.state.email} onChange={this.handleMessageInputOnChange} placeholder="Email"/>
                                         <input
                                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                                            type="password" placeholder="Password"/>
-                                        <button
+                                            type="password" name="password" value={this.state.password}  onChange={this.handleMessageInputOnChange} placeholder="Password"/>
+
+                                        <button onClick={this.onLoginButtonClick}
                                             className="mt-5 tracking-wide font-semibold bg-green-400 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor"
                                                  stroke-width="2"
@@ -67,6 +98,18 @@ export class Login extends Component {
                                             </svg>
                                             <span className="ml-">
                                 Sign In
+                                                 <ToastContainer
+                                                     position="top-right"
+                                                     autoClose={5000}
+                                                     hideProgressBar={false}
+                                                     newestOnTop={false}
+                                                     closeOnClick
+                                                     rtl={false}
+                                                     pauseOnFocusLoss
+                                                     draggable
+                                                     pauseOnHover
+                                                     theme="light"
+                                                 />
                             </span>
                                         </button>
                                         <div className="mt-4 flex items-center justify-between">
@@ -105,5 +148,56 @@ export class Login extends Component {
                 </div>
             </>
         );
+
     }
+
+    handleMessageInputOnChange(event:{target:{value:any; name:any}}){
+        const target=event.target;
+        const name=target.name
+        const value=target.value;
+
+        // @ts-ignore
+        this.setState({
+            [name]:value
+        })
+    }
+
+
+    private onLoginButtonClick =() =>{
+        try {
+            this.api.get('/signUser/all', {
+                email:this.state.email,
+                password:this.state.password
+            })
+                .then(function (response:any) {
+                    console.log(response);
+                    toast("Success");
+                })
+                .catch(function (error:any) {
+                    console.log(error);
+                });
+        } catch (error) {
+            console.error('Error signing in:', error);
+            // Handle error, e.g., show a toast notification
+            toast.error('Error signing in');
+        }
+    }
+
+
+
+    /* handleSignIn = async () => {
+         const { email, password } = this.state;
+         try {
+             const response = await this.api.get('/signUser/find/', { email });
+             const response2 = await this.api.get('/signUser/finds/', { password });
+             response2.data.password = password;
+             response.data.email = email;
+             toast("Success");
+             // Handle the response data, maybe set it in the component state or trigger some action
+         } catch (error) {
+             console.error('Error signing in:', error);
+             // Handle error, e.g., show a toast notification
+             toast.error('Error signing in');
+         }
+     };*/
 }

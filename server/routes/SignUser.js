@@ -7,4 +7,7 @@ router.post('/save',signController.saveUser);
 
 router.get('/all',signController.getAllUser);
 
+router.get('/find/:email',signController.getUserName);
+
+
 module.exports=router;

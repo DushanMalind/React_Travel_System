@@ -2,31 +2,31 @@
 const UserModel=require('../model/UserModel');
 
 const UserController={
-    getUserName:async function (req,res,next) {
-        try{
-            const userName=await UserModel.find();
-            res.status(200).json(userName);
-        }catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error:"Server Error DOWN"
-            });
-        }
-    },
+   getUserLogin:async function (req,res,next) {
+       const {email,password}=req.body;
+         try {
+             const user = await UserModel.findOne({email: email});
+             if (user) {
+                 if (user.password === password) {
+                     res.status(200).json(user);
+                 } else {
+                     res.status(400).json({
+                         error: "Password Not Match"
+                     });
+                 }
+             } else {
+                 res.status(400).json({
+                     error: "User Not Found"
+                 });
 
-    getUser:async function (req,res,next) {
-        try{
-            const userId=req.params.id;
-            const user=await UserModel.find({id:userId});
-            res.status(200).json(user);
-        }catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error:"Server Error DOWN"
-            });
-        }
-    }
-
+             }
+         }catch (error) {
+             console.error(error);
+             res.status(500).json({
+                 error:"Server Error DOWN"
+             });
+         }
+   }
 }
 
 module.exports=UserController;

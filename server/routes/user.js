@@ -3,8 +3,6 @@ var router=express.Router();
 const userController=require("../controller/UserController");
 
 
-router.get('/userName',userController.getUserName);
-
-router.get('find/:id',userController.getUser);
+router.get('/login',userController.getUserLogin);
 
 module.exports=router;

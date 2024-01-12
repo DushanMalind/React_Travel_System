@@ -219,7 +219,7 @@ export class SignIn extends Component<SignInProps,SignInState> {
         }
 
         try{
-            this.api.post('/SignUser/save',{
+            this.api.post('/signUser/save',{
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
                 address:this.state.address,
