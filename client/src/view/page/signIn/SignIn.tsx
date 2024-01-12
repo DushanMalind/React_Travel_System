@@ -1,8 +1,45 @@
 import {Component} from "react";
 import {Link} from "react-router-dom";
 import "./SignIn.css"
+import axios from "axios";
 
-export class SignIn extends Component {
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface SignInProps {
+    data: any
+}
+
+interface SignInState {
+    firstName: string,
+    lastName: string,
+    address: string,
+    contact: string,
+    email: string,
+    password: string,
+    confirmPassword: string
+}
+
+export class SignIn extends Component<SignInProps,SignInState> {
+
+    private api:any;
+
+    constructor(props:any) {
+        super(props);
+        this.api = axios.create({baseURL:`http://localhost:4000`});
+
+        this.state={
+            firstName:'',
+            lastName:'',
+            address:'',
+            contact:'',
+            email:'',
+            password:'',
+            confirmPassword:''
+        }
+        this.handleMessageInputOnChange=this.handleMessageInputOnChange.bind(this);
+    }
+
     render() {
         return (
             <>
@@ -29,7 +66,7 @@ export class SignIn extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="firstName"
-                                                    type="text"
+                                                    type="text" name="firstName" value={this.state.firstName} onChange={this.handleMessageInputOnChange}
                                                     placeholder="First Name"/>
                                             </div>
                                             <div className="md:ml-2">
@@ -40,7 +77,7 @@ export class SignIn extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="lastName"
-                                                    type="text"
+                                                    type="text" name="lastName" value={this.state.lastName} onChange={this.handleMessageInputOnChange}
                                                     placeholder="Last Name"
                                                 />
                                             </div>
@@ -54,7 +91,7 @@ export class SignIn extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="firstName"
-                                                    type="text"
+                                                    type="text" name="address" value={this.state.address} onChange={this.handleMessageInputOnChange}
                                                     placeholder="Address"/>
                                             </div>
                                             <div className="md:ml-2">
@@ -65,7 +102,7 @@ export class SignIn extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="lastName"
-                                                    type="text"
+                                                    type="text" name="contact" value={this.state.contact} onChange={this.handleMessageInputOnChange}
                                                     placeholder="Contact"
                                                 />
                                             </div>
@@ -78,7 +115,7 @@ export class SignIn extends Component {
                                             <input
                                                 className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 id="email"
-                                                type="email"
+                                                type="email" name="email" value={this.state.email} onChange={this.handleMessageInputOnChange}
                                                 placeholder="Email"
                                             />
                                         </div>
@@ -91,7 +128,7 @@ export class SignIn extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="password"
-                                                    type="password"
+                                                    type="password" name="password" value={this.state.password} onChange={this.handleMessageInputOnChange}
                                                     placeholder="******************"
                                                 />
                                                 <p className="text-xs italic text-red-500">Please choose a password.</p>
@@ -103,8 +140,8 @@ export class SignIn extends Component {
                                                 </label>
                                                 <input
                                                     className="w-full px-10 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                                    id="c_password"
-                                                    type="password"
+                                                    id="confirmPassword"
+                                                    type="password" name="confirmPassword" value={this.state.confirmPassword} onChange={this.handleMessageInputOnChange}
                                                     placeholder="******************"
                                                 />
                                             </div>
@@ -113,7 +150,19 @@ export class SignIn extends Component {
                                             <button
                                                 className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
                                                 type="button"
-                                            >
+                                                onClick={this.OnsendButtonClick} >
+                                                <ToastContainer
+                                                    position="top-right"
+                                                    autoClose={5000}
+                                                    hideProgressBar={false}
+                                                    newestOnTop={false}
+                                                    closeOnClick
+                                                    rtl={false}
+                                                    pauseOnFocusLoss
+                                                    draggable
+                                                    pauseOnHover
+                                                    theme="light"
+                                                />
                                                 Register Account
                                             </button>
                                         </div>
@@ -145,5 +194,61 @@ export class SignIn extends Component {
                 </div>
             </>
         );
+    }
+
+    handleMessageInputOnChange(event:{target:{value:any; name:any}}){
+        const target=event.target;
+        const name=target.name
+        const value=target.value;
+
+
+        // @ts-ignore
+        this.setState({
+            [name]:value
+        })
+
+    }
+
+    private OnsendButtonClick = () => {
+        const { password, confirmPassword } = this.state;
+
+        if (password !== confirmPassword) {
+            console.error("Passwords do not match");
+            toast("Passwords do not match");
+            return;
+        }
+
+        try{
+            this.api.post('/SignUser/save',{
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                address:this.state.address,
+                contact:this.state.contact,
+                email:this.state.email,
+                password:this.state.password,
+                confirmPassword:this.state.confirmPassword
+            }).then((res:{data:any})=>{
+                let jsonData=res.data;
+                console.log(jsonData);
+                toast(jsonData);
+            }).catch((err:any)=>{
+                console.log("Axios Error",err);
+
+            });
+
+        }catch (error){
+            console.error("Error Submitting Form data",error);
+        }
+        finally {
+            this.setState({
+                firstName:'',
+                lastName:'',
+                address:'',
+                contact:'',
+                email:'',
+                password:'',
+                confirmPassword:''
+            })
+        }
     }
 }

@@ -38,7 +38,9 @@ const SignModel = mongoose.Schema({
         type: String,
     },
 
-});
+},
+    {versionKey: false}
+);
 
 const signModel = mongoose.model('SignModel', SignModel);
 
