@@ -5,9 +5,11 @@ const signController=require('../controller/SignController');
 
 router.post('/save',signController.saveUser);
 
-router.get('/all',signController.getAllUser);
+/*router.get('/all',signController.getAllUser);*/
 
-router.get('/find/:email',signController.getUserName);
+router.post('/oneUser',signController.getUserLogin);
+
+/*router.get('/find/:email',signController.getUserName);*/
 
 
 module.exports=router;

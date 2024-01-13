@@ -99,7 +99,7 @@ export class Login extends Component<LoginProps,LoginState> {
                                             <span className="ml-">
                                 Sign In
                                                  <ToastContainer
-                                                     position="top-right"
+                                                  /*   position="top-right"
                                                      autoClose={5000}
                                                      hideProgressBar={false}
                                                      newestOnTop={false}
@@ -108,7 +108,7 @@ export class Login extends Component<LoginProps,LoginState> {
                                                      pauseOnFocusLoss
                                                      draggable
                                                      pauseOnHover
-                                                     theme="light"
+                                                     theme="light"*/
                                                  />
                             </span>
                                         </button>
@@ -164,17 +164,31 @@ export class Login extends Component<LoginProps,LoginState> {
 
 
     private onLoginButtonClick =() =>{
+
         try {
-            this.api.get('/signUser/all', {
+            this.api.post('/signUser/oneUser', {
                 email:this.state.email,
                 password:this.state.password
-            })
-                .then(function (response:any) {
-                    console.log(response);
-                    toast("Success");
+
+            }).then((res:{data:any})=>{
+                    const jsonData=res.data;
+                    console.log(jsonData);
+                    if (jsonData){
+                        toast.success(`Your Susses Login Account ${jsonData.firstName}`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "colored",
+                        });
+                    }
                 })
                 .catch(function (error:any) {
-                    console.log(error);
+                    console.log("Axios Error",error);
+                    toast.error("You don't have an account, Try Sign up first")
                 });
         } catch (error) {
             console.error('Error signing in:', error);
