@@ -185,6 +185,7 @@ export class Login extends Component<LoginProps,LoginState> {
                             theme: "colored",
                         });
                     }
+                window.location.href="/admin";
                 })
                 .catch(function (error:any) {
                     console.log("Axios Error",error);

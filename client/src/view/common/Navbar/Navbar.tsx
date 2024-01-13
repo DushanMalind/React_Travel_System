@@ -39,10 +39,15 @@ export class Navbar extends Component {
                                     <Link to="/contact">Contact</Link>
                                 </a>
                             </li>
+                          {/*  <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                                <a href="#">
+                                    <Link to="/admin"></Link>
+                                </a>
+                            </li>*/}
                         </ul>
                         <div className="flex-grow"></div>
                         <div className="hidden items-center justify-center gap-6 md:flex mr-8">
-                        <a href="#" className="rounded-md bg-gradient-to-br bg-green-400 to-emerald-400 px-3 py-1.5 font-dm
+                            <a href="#" className="rounded-md bg-gradient-to-br bg-green-400 to-emerald-400 px-3 py-1.5 font-dm
                                text-sm font-medium text-white shadow-md shadow-green-400/50 transition-transform duration-200
                                ease-in-out hover:scale-[1.03]">
                              <Link to="/login">Login In</Link>
