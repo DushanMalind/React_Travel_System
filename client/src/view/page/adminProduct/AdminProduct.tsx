@@ -1,16 +1,48 @@
 import {Component} from "react";
 
-export class AdminProduct extends Component {
+
+interface AdminProps{
+    data: any
+}
+
+interface AdminProductState {
+    isButtonDisabled: boolean
+}
+
+export class AdminProduct extends Component<AdminProps,AdminProductState> {
+
+    private api: any;
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            isButtonDisabled: false
+        }
+    }
+
     render() {
+
+        const buttonText = this.state.isButtonDisabled ? 'Add table' : 'Add From';
+
         return (
             <>
-                <div className="container mx-auto mt-10 bg-white  border-4 rounded-lg shadow relative m-10">
 
-                    <div className="flex items-start justify-between p-5 border-b rounded-t">
-                        <h3 className="text-xl font-semibold">
-                            Edit product
+
+                <div
+                    className="container mx-auto mt-10 bg-white  border-4 rounded-lg shadow relative m-10">
+                    <button type="button" onClick={this.onClickWindowDownAndUp}
+
+                            className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium float-end
+                            mr-8  rounded-lg text-sm px-5 py-2.5 text-center"
+                            data-modal-toggle="product-modal">
+                        {buttonText}
+                    </button>
+
+                    <div className="flex items-start justify-center p-5 border-b rounded-t">
+                        <h3 className="text-4xl  font-semibold">
+                            ADD Room
                         </h3>
-                        <button type="button"
+                       {/* <button type="button" onClick={this.onClickWindowDownAndUp} id="product-modal"
                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                 data-modal-toggle="product-modal">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -19,51 +51,56 @@ export class AdminProduct extends Component {
                                       d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                       clip-rule="evenodd"></path>
                             </svg>
-                        </button>
+                        </button>*/}
                     </div>
 
-                    <div className="p-6 space-y-6">
+                    <div id="product-modal" className="p-6 space-y-6 hidden" >
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
                                     <input type="text" name="id" id="id"
-
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="Apple Imac 27”"/>
+                                           placeholder="ID"/>
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="category"
-                                           className="text-sm font-medium text-gray-900 block mb-2">Name</label>
-                                    <input type="text" name="name" id="name"
-
+                                           className="text-sm font-medium text-gray-900 block mb-2">Room</label>
+                                    <input type="text" name="room" id="room"
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="Electronics"/>
+                                           placeholder="Title"/>
                                 </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="brand"
-                                           className="text-sm font-medium text-gray-900 block mb-2">Text</label>
-                                    <input type="text" name="text" id="text"
-
+                                           className="text-sm font-medium text-gray-900 block mb-2">Title</label>
+                                    <input type="text" name="title" id="title"
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="Apple"/>
+                                           placeholder="Text"/>
                                 </div>
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="brand"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Room Count</label>
+                                    <input type="text" name="roomCount" id="roomCount"
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Text"/>
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="brand"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Description</label>
+                                    <input type="text" name="description" id="description"
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Text"/>
+                                </div>
+
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="price"
                                            className="text-sm font-medium text-gray-900 block mb-2">Price</label>
                                     <input type="number" name="price" id="price"
 
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="$2300"/>
-                                </div>
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="price"
-                                           className="text-sm font-medium text-gray-900 block mb-2">CurrentPrice</label>
-                                    <input type="text" name="currentPrice" id="currentPrice"
-
-                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="$2300"/>
+                                           placeholder="2300"/>
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
@@ -72,7 +109,7 @@ export class AdminProduct extends Component {
                                     <input type="file" name="image" id="image" accept='image/*'
 
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="$2300"/>
+                                           placeholder="Image"/>
                                 </div>
 
                                 {/* <div className="col-span-full">
@@ -85,13 +122,62 @@ export class AdminProduct extends Component {
                                 </div>*/}
                             </div>
                         </form>
+
+                        <div className="p-6 border-t space-x-3 border-gray-200 rounded-b">
+                            <button
+                                className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button">Save all
+                            </button>
+
+                            <button
+                                className="text-white bg-yellow-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button">Update
+                            </button>
+
+                            <button
+                                className="text-white bg-red-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button">Delete
+                            </button>
+
+                        </div>
+
                     </div>
 
-                    <div className="p-6 border-t border-gray-200 rounded-b">
-                        <button
-                            className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            type="button" >Save all
-                        </button>
+
+                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
+                        <table id="example" className="table-auto w-full">
+                            <thead>
+                            <tr>
+                                <th className="px-4 py-2">ID</th>
+                                <th className="px-4 py-2">Room</th>
+                                <th className="px-4 py-2">Title</th>
+                                <th className="px-4 py-2">Room Count</th>
+                                <th className="px-4 py-2">Description</th>
+                                <th className="px-4 py-2">Price</th>
+                                <th className="px-4 py-2">Image</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+                            <tr>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
@@ -127,7 +213,38 @@ export class AdminProduct extends Component {
                         </div>
                     </div>
                 </div>*/}
+
+
+
+
+
+
+
+
             </>
         );
+    }
+
+    private onClickWindowDownAndUp = () => {
+        const modal = document.getElementById('product-modal');
+        const modal2 = document.getElementById('table-hide');
+
+        if (modal) {
+            modal.classList.toggle('hidden');
+            // @ts-ignore
+            modal2.classList.toggle('hidden')
+        }else {
+            console.log("modal not found")
+        }
+
+        //this.setState({isButtonDisabled: this.state.isButtonDisabled  })
+        //this.setState(this.state.isButtonDisabled ? {isButtonDisabled: false} : {isButtonDisabled: true})
+
+        this.setState((prevState) => ({
+            isButtonDisabled: !prevState.isButtonDisabled,
+            buttonText: prevState.isButtonDisabled ? 'Add table' : 'Add From'
+        }));
+
+
     }
 }
