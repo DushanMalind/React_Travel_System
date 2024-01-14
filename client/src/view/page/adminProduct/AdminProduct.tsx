@@ -1,12 +1,12 @@
 import {Component} from "react";
 
-
 interface AdminProps{
     data: any
 }
 
 interface AdminProductState {
-    isButtonDisabled: boolean
+    isButtonDisabled: boolean;
+
 }
 
 export class AdminProduct extends Component<AdminProps,AdminProductState> {
@@ -16,14 +16,19 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            isButtonDisabled: false
+            isButtonDisabled: false,
+
         }
     }
+
+
+
 
     render() {
 
         const buttonText = this.state.isButtonDisabled ? 'Add table' : 'Add From';
 
+        // @ts-ignore
         return (
             <>
 
@@ -42,7 +47,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                         <h3 className="text-4xl  font-semibold">
                             ADD Room
                         </h3>
-                       {/* <button type="button" onClick={this.onClickWindowDownAndUp} id="product-modal"
+                        {/* <button type="button" onClick={this.onClickWindowDownAndUp} id="product-modal"
                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                 data-modal-toggle="product-modal">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -54,7 +59,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                         </button>*/}
                     </div>
 
-                    <div id="product-modal" className="p-6 space-y-6 hidden" >
+                    <div id="product-modal" className="p-6 space-y-6 hidden">
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
@@ -144,9 +149,10 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
 
-                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-scroll">
                         <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
-                        <table id="example" className="table-auto w-full">
+                        <table id="example "
+                               className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
                             <tr>
                                 <th className="px-4 py-2">ID</th>
@@ -160,25 +166,45 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             </thead>
                             <tbody>
                             <tr>
-
+                                <td className="border px-4 py-2">Ashton Cox</td>
+                                <td className="border px-4 py-2">Junior Technical Author</td>
+                                <td className="border px-4 py-2">San Francisco</td>
+                                <td className="border px-4 py-2">66</td>
+                                <td className="border px-4 py-2">2009/01/12</td>
+                                <td className="border px-4 py-2">$86,000</td>
                             </tr>
-                            <tr>
 
-                            </tr>
-                            <tr>
 
-                            </tr>
-                            <tr>
-
-                            </tr>
-                            <tr>
-
-                            </tr>
 
 
                             </tbody>
                         </table>
+                        <div className="py-1 px-4">
+                            <nav className="flex items-center space-x-1">
+                                <button type="button"
+                                        className="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                <span aria-hidden="true">«</span>
+                                    <span className="sr-only">Previous</span>
+                                </button>
+                                <button type="button"
+                                        className="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10"
+                                        aria-current="page">1
+                                </button>
+                                <button type="button"
+                                        className="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">2
+                                </button>
+                                <button type="button"
+                                        className="min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10">3
+                                </button>
+                                <button type="button"
+                                        className="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                    <span className="sr-only">Next</span>
+                                    <span aria-hidden="true">»</span>
+                                </button>
+                            </nav>
+                        </div>
                     </div>
+
 
                 </div>
                 {/* <div className="container mx-auto mt-10  border-2 border-blue-400 rounded-lg">
@@ -224,6 +250,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             </>
         );
     }
+
+
 
     private onClickWindowDownAndUp = () => {
         const modal = document.getElementById('product-modal');
