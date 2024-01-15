@@ -395,6 +395,17 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         }catch (error){
             toast("Error Submit Form Data "+ error);
         }
+        finally {
+            this.setState({
+                id: 0,
+                room: 'Room',
+                title: '',
+                roomCount: '',
+                description: '',
+                price: 0,
+                image: '',
+            })
+        }
     }
 
 
