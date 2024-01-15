@@ -226,8 +226,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             <tr className="border-black border-[2px] px-1">
                                 <th className="border-black border-[0.5px] px-4 py-2">ID</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Room</th>
-                                <th className="border-black border-[0.5px] px-4 py-2">Title</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Room Count</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Title</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Description</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Price</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Image</th>
@@ -236,15 +236,17 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             <tbody>
 
                             {this.state.data.map((item, index) => (
-                                  <tr className="border-black border-[0.5px] px-1" key={index}>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
-                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
-                                      <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img src={item.image} alt="Room"/>}</td>
-                                  </tr>
+                                <tr className="border-black border-[0.5px] px-1" key={index}
+                                    onClick={() => this.handleTableRowClick(item)}>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
+                                    <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img
+                                        src={item.image} alt="Room"/>}</td>
+                                </tr>
 
 
                             ))}
@@ -345,6 +347,20 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             };
         }
     };
+
+    handleTableRowClick = (item: any) => {
+        this.setState({
+            id: item.id,
+            room: item.room,
+            title: item.title,
+            roomCount: item.roomCount,
+            description: item.description,
+            price: item.price,
+            image: item.image,
+        });
+        this.onClickWindowDownAndUp();
+    };
+
 
     handleMessageInputOnChange(event:{target:{value:any; name:any}}){
         const target=event.target;
