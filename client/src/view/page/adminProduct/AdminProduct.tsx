@@ -52,7 +52,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
 
     componentDidMount() {
-        this.api = axios.create({ baseURL: `http://localhost:4000` });
+        //this.api = axios.create({ baseURL: `http://localhost:4000` });
         this.fetchData()
     }
 
@@ -223,7 +223,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                         <table id="example "
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
-                            <tr className="border-black border-[0.5px] px-1">
+                            <tr className="border-black border-[2px] px-1">
                                 <th className="border-black border-[0.5px] px-4 py-2">ID</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Room</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Title</th>
@@ -237,12 +237,12 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
                             {this.state.data.map((item, index) => (
                                   <tr className="border-black border-[0.5px] px-1" key={index}>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
-                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
+                                      <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
                                       <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img src={item.image} alt="Room"/>}</td>
                                   </tr>
 
