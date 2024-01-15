@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {data} from "autoprefixer";
 
 interface AdminProps{
     data: any
@@ -15,8 +16,8 @@ interface AdminProductState {
     roomCount: string,
     description: string,
     price: number,
-    image: string
-
+    image: string,
+    data:any[];
     isButtonDisabled: boolean;
 
 
@@ -29,6 +30,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
     constructor(props: any) {
         super(props);
         this.api = axios.create({baseURL: `http://localhost:4000`});
+
         this.state = {
             isButtonDisabled: false,
             id: 0,
@@ -37,12 +39,40 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             roomCount: '',
             description: '',
             price: 0,
-            image: ''
+            image: '',
+            data: [],
+
 
         }
         this.handleMessageInputOnChange=this.handleMessageInputOnChange.bind(this);
     }
 
+
+
+
+
+    componentDidMount() {
+        this.api = axios.create({ baseURL: `http://localhost:4000` });
+        this.fetchData()
+    }
+
+    fetchData= async () =>{
+        try {
+            /*const response=await fetch('/product.json');
+            const jsonData=await response.json();
+            console.log(jsonData);
+            this.setState({data:jsonData});*/
+            this.api.get('/product/all').then((res:{data:any}) =>{
+                const jsonData=res.data;
+                // @ts-ignore
+                this.setState({data:jsonData});
+            }).catch((error:any) =>{
+                console.log("Axios Error",error);
+            });
+        }catch (error){
+            console.log("Data NOT Loard",error);
+        }
+    }
 
 
 
@@ -188,32 +218,36 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
 
-                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-scroll">
+                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-scroll ">
                         <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
                         <table id="example "
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
-                            <tr>
-                                <th className="px-4 py-2">ID</th>
-                                <th className="px-4 py-2">Room</th>
-                                <th className="px-4 py-2">Title</th>
-                                <th className="px-4 py-2">Room Count</th>
-                                <th className="px-4 py-2">Description</th>
-                                <th className="px-4 py-2">Price</th>
-                                <th className="px-4 py-2">Image</th>
+                            <tr className="border-black border-[0.5px] px-1">
+                                <th className="border-black border-[0.5px] px-4 py-2">ID</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Room</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Title</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Room Count</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Description</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Price</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Image</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td className="border px-4 py-2">Ashton Cox</td>
-                                <td className="border px-4 py-2">Junior Technical Author</td>
-                                <td className="border px-4 py-2">San Francisco</td>
-                                <td className="border px-4 py-2">66</td>
-                                <td className="border px-4 py-2">2009/01/12</td>
-                                <td className="border px-4 py-2">$86,000</td>
-                            </tr>
+
+                            {this.state.data.map((item, index) => (
+                                  <tr className="border-black border-[0.5px] px-1" key={index}>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
+                                      <td className="text-[9px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
+                                      <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img src={item.image} alt="Room"/>}</td>
+                                  </tr>
 
 
+                            ))}
 
 
                             </tbody>
@@ -222,7 +256,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             <nav className="flex items-center space-x-1">
                                 <button type="button"
                                         className="p-2.5 inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                <span aria-hidden="true">«</span>
+                                    <span aria-hidden="true">«</span>
                                     <span className="sr-only">Previous</span>
                                 </button>
                                 <button type="button"
