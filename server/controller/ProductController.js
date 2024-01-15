@@ -55,7 +55,28 @@ const ProductController={
                 error:"Server Not Update Error DOWN"
             });
         }
+    },
+
+    deleteProduct:async function (req,res,next) {
+        try {
+            const productId=req.params.id;
+            const result=await Product.deleteOne({id:productId});
+
+            if (result.deletedCount==0){
+                res.status(404).json({
+                    error:"Product Not Found"
+                });
+            }
+
+            res.status(200).json("Success Fully Data Delete");
+
+        }catch (error){
+            res.status(500).json({
+                error:"Server Not Delete Error DOWN"
+            });
+        }
     }
+
 }
 
 module.exports=ProductController;
