@@ -4,6 +4,7 @@ import axios from "axios";
 import {ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {data} from "autoprefixer";
+import './AdminProduct.css';
 
 interface AdminProps{
     data: any

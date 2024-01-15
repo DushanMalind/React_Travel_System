@@ -79,7 +79,7 @@ export class Admin extends Component {
                     </div>
                 </div>
 
-                <div className="flex">
+                <div className="flex overflow-y-hidden">
                     <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
                         <div className="space-y-3">
                             <div className="flex items-center">
