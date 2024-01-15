@@ -75,6 +75,20 @@ const ProductController={
                 error:"Server Not Delete Error DOWN"
             });
         }
+    },
+
+    dataBaseLastIdCheck:async function (req,res,next) {
+        try {
+            const lastProduct = await Product.findOne().sort({ id: -1 }).lean();
+            //const lastId = lastProduct ? lastProduct.id : 0;
+            const lastId = lastProduct ? lastProduct.id + 1 : 1;
+            res.status(200).json({ id: lastId });
+        } catch (error) {
+            console.error("Error fetching last ID:", error);
+            res.status(500).json({
+                error: "Server Error: Unable to fetch last ID",
+            });
+        }
     }
 
 }

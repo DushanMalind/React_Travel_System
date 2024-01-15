@@ -53,7 +53,9 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
     componentDidMount() {
         //this.api = axios.create({ baseURL: `http://localhost:4000` });
+        this.dataBaseLastId();
         this.fetchData()
+
     }
 
     fetchData= async () =>{
@@ -112,13 +114,16 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
                     <div id="product-modal" className="p-6 space-y-6 hidden">
+                       {/* <label htmlFor="product-name" className="text-sm font-medium text-gray-900 block mb-2">
+                            {this.state.id}
+                        </label>*/}
                         <form action="#">
                             <div className="grid grid-cols-6 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
                                     <input type="text" name="id" id="id"
-                                           value={this.state.id} onChange={this.handleMessageInputOnChange}
+                                           value={this.state.id} readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="ID"/>
                                 </div>
@@ -168,7 +173,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="price"
                                            className="text-sm font-medium text-gray-900 block mb-2">Image Add</label>
-                                    <input type="file" name="image" id="image" accept='image/*' onChange={this.convertBase64}
+                                    <input type="file" name="image" id="image" accept='image/*'
+                                           onChange={this.convertBase64}
 
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Image"/>
@@ -227,7 +233,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
 
                     <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-scroll ">
-                        <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
+                    <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
                         <table id="example "
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
@@ -403,10 +409,12 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                 description:this.state.description,
                 price:this.state.price,
                 image:this.state.image
-            }).then((res:{data: any}) =>{
-                let jsonData=res.data;
-                toast("Success Submit Form Data"+jsonData);
+            }).then(async (res: { data: any }) => {
+                let jsonData = res.data;
+                toast("Success Submit Form Data" + jsonData);
                 console.log(jsonData);
+                await this.fetchData();
+                await this.dataBaseLastId();
             }).catch((error:any)=>{
                 console.log("Axios error",error)
                 toast("Error Submit Form Data "+ error);
@@ -487,10 +495,28 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
     }
 
 
+    private dataBaseLastId = async () => {
+        try {
+            const response = await this.api.get('/product/lastId');
+            const jsonData = response.data;
+
+            if (jsonData && jsonData.id !== undefined) {
+                this.setState({id: jsonData.id});
+            } else {
+                console.error("Invalid response format:", jsonData);
+            }
+        } catch (error) {
+            console.error("Axios Error", error);
+            console.log("Error Last Id", error);
+        }
+    }
+
+
 
     private onClickWindowDownAndUp = () => {
         const modal = document.getElementById('product-modal');
         const modal2 = document.getElementById('table-hide');
+        this.dataBaseLastId();
 
         if (modal) {
             modal.classList.toggle('hidden');

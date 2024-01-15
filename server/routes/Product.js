@@ -19,5 +19,10 @@ router.put('/update/:id',productController.updateProduct);
 
 router.delete('/delete/:id',productController.deleteProduct);
 
+router.get('/lastId',productController.dataBaseLastIdCheck)
+
+
+
+
 
 module.exports=router;
