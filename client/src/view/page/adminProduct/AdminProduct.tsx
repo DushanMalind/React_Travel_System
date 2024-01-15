@@ -26,7 +26,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
     render() {
 
-        const buttonText = this.state.isButtonDisabled ? 'Add table' : 'Add From';
+        const buttonText = this.state.isButtonDisabled ? 'Add Table' : 'Add From';
 
         // @ts-ignore
         return (
