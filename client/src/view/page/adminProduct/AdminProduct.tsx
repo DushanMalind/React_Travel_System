@@ -1,4 +1,6 @@
 import {Component} from "react";
+import axios from "axios";
+
 
 interface AdminProps{
     data: any
@@ -6,6 +8,14 @@ interface AdminProps{
 
 interface AdminProductState {
     isButtonDisabled: boolean;
+    id: number,
+    room: string,
+    title: string,
+    roomCount: string,
+    description: string,
+    price: number,
+    image: string
+
 
 }
 
@@ -15,8 +25,16 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
     constructor(props: any) {
         super(props);
+        this.api = axios.create({baseURL: `http://localhost:4000`});
         this.state = {
             isButtonDisabled: false,
+            id: 0,
+            room: '',
+            title: '',
+            roomCount: '',
+            description: '',
+            price: 0,
+            image: ''
 
         }
     }
@@ -268,9 +286,10 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         //this.setState({isButtonDisabled: this.state.isButtonDisabled  })
         //this.setState(this.state.isButtonDisabled ? {isButtonDisabled: false} : {isButtonDisabled: true})
 
+        // @ts-ignore
         this.setState((prevState) => ({
             isButtonDisabled: !prevState.isButtonDisabled,
-            buttonText: prevState.isButtonDisabled ? 'Add table' : 'Add From'
+            buttonText: prevState.isButtonDisabled ? 'Add Table' : 'Add From'
         }));
 
 
