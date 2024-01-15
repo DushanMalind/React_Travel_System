@@ -291,6 +291,19 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         }
     };
 
+    handleMessageInputOnChange(event:{target:{value:any; name:any}}){
+        const target=event.target;
+        const name=target.name
+        const value=target.value;
+
+        // @ts-ignore
+        this.setState({
+            [name]:value
+        })
+    }
+
+
+
 
     private onClickWindowDownAndUp = () => {
         const modal = document.getElementById('product-modal');
