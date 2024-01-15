@@ -212,11 +212,13 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             <button
                                 className="text-white bg-purple-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 type="button" onClick={this.onClickClearData}>Clear
+                                <ToastContainer/>
                             </button>
 
                             <button
                                 className="text-white bg-red-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                type="button">Delete
+                                type="button" onClick={this.onDeleteClick}>Delete
+                                <ToastContainer/>
                             </button>
 
                         </div>
@@ -463,6 +465,25 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         /*finally {
             this.onClickWindowDownAndUp();
         }*/
+    }
+
+
+    private onDeleteClick = () => {
+        try {
+            this.api.delete('product/delete/'+this.state.id).then(async (res: { data: any }) => {
+                let jsonData = res.data;
+                toast.success("Success Delete Form Data");
+                console.log(jsonData);
+                await this.fetchData();
+                this.onClickClearData();
+            }).catch((error:any)=>{
+                console.log("Axios error",error)
+                toast("Error Delete Form Data "+ error);
+            })
+        }catch (error){
+            console.log("Delete Not Form data",error)
+            toast("Delete Not Form Data "+ error);
+        }
     }
 
 
