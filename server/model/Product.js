@@ -23,7 +23,7 @@ const Product=mongoose.Schema({
         type:String
     },
 
-    "roomsCount":{
+    "roomCount":{
         required:true,
         type:String
     },

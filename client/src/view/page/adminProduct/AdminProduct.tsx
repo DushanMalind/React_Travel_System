@@ -1,13 +1,14 @@
 import {ChangeEvent, Component} from "react";
 import axios from "axios";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface AdminProps{
     data: any
 }
 
 interface AdminProductState {
-    isButtonDisabled: boolean;
     id: number,
     room: string,
     title: string,
@@ -15,6 +16,8 @@ interface AdminProductState {
     description: string,
     price: number,
     image: string
+
+    isButtonDisabled: boolean;
 
 
 }
@@ -29,7 +32,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         this.state = {
             isButtonDisabled: false,
             id: 0,
-            room: '',
+            room: 'Room',
             title: '',
             roomCount: '',
             description: '',
@@ -37,6 +40,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             image: ''
 
         }
+        this.handleMessageInputOnChange=this.handleMessageInputOnChange.bind(this);
     }
 
 
@@ -84,6 +88,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
                                     <input type="text" name="id" id="id"
+                                           value={this.state.id} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="ID"/>
                                 </div>
@@ -91,6 +96,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Room</label>
                                     <input type="text" name="room" id="room"
+                                           value={this.state.room} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -98,6 +104,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Title</label>
                                     <input type="text" name="title" id="title"
+                                           value={this.state.title} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -105,6 +112,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Room Count</label>
                                     <input type="text" name="roomCount" id="roomCount"
+                                           value={this.state.roomCount} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -113,6 +121,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Description</label>
                                     <input type="text" name="description" id="description"
+                                           value={this.state.description} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -121,7 +130,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="price"
                                            className="text-sm font-medium text-gray-900 block mb-2">Price</label>
                                     <input type="number" name="price" id="price"
-
+                                           value={this.state.price} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="2300"/>
                                 </div>
@@ -129,7 +138,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="price"
                                            className="text-sm font-medium text-gray-900 block mb-2">Image Add</label>
-                                    <input type="file" name="image" id="image" accept='image/*'
+                                    <input type="file" name="image" id="image" accept='image/*' onChange={this.convertBase64}
 
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Image"/>
@@ -149,7 +158,19 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                         <div className="p-6 border-t space-x-3 border-gray-200 rounded-b">
                             <button
                                 className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                type="button">Save all
+                                type="button" onClick={this.OnSendButtonClick}>Save all
+                                <ToastContainer
+                                    position="top-right"
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light"
+                                />
                             </button>
 
                             <button
@@ -300,6 +321,30 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         this.setState({
             [name]:value
         })
+    }
+
+
+    private OnSendButtonClick = () => {
+        try {
+            this.api.post('/product/save',{
+                id:this.state.id,
+                room:this.state.room,
+                title:this.state.title,
+                roomCount:this.state.roomCount,
+                description:this.state.description,
+                price:this.state.price,
+                image:this.state.image
+            }).then((res:{data: any}) =>{
+                let jsonData=res.data;
+                toast("Success Submit Form Data"+jsonData);
+                console.log(jsonData);
+            }).catch((error:any)=>{
+                console.log("Axios error",error)
+                toast("Error Submit Form Data "+ error);
+            })
+        }catch (error){
+            toast("Error Submit Form Data "+ error);
+        }
     }
 
 

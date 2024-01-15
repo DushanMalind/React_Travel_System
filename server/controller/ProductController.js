@@ -22,7 +22,8 @@ const ProductController={
         try {
             const productData=req.body;
             const product=await Product.create(productData);
-            res.status(200).json(product);
+            res.status(200).json("Success Fully Data Add");
+            console.log(productData);
         }catch (error) {
          console.error(error);
             res.status(500).json({

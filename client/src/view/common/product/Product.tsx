@@ -34,14 +34,14 @@ export class Product extends Component <ProductProps,ProductState>{
         };
 
         const {data}= this.props;
-        const image=require(`../../../images/${data.image}`);
+        //const image=require(`../../../images/${data.image}`);
 
         return (
 
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src={image}
+                        <img className="w-full" src={data.image}
                              alt="Product Image"/>
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
