@@ -184,8 +184,15 @@ export class Login extends Component<LoginProps,LoginState> {
                             progress: undefined,
                             theme: "colored",
                         });
+
+                        if (jsonData.isAdmin) {
+                            window.location.href = "/contact";
+                        } else {
+                            window.location.href = "/admin";
+                        }
+
                     }
-                window.location.href="/admin";
+                //window.location.href="/admin";
                 })
                 .catch(function (error:any) {
                     console.log("Axios Error",error);

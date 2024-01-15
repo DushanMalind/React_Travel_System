@@ -50,10 +50,12 @@ const SignController={
              console.log("user: "+user);
              if (user) {
                  if (user.password === password) {
+                     const isAdmin = user.isAdmin || false;
 
                      user.password="You are not allowed to see this";
                      user.confirmPassword="You are not allowed to see this";
 
+                     user.isAdmin = isAdmin;
                      res.status(200).json(user);
                  } else {
                      res.status(400).json({

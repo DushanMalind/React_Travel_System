@@ -233,7 +233,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
 
-                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 overflow-y-scroll ">
+                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
                         <table id="example "
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">

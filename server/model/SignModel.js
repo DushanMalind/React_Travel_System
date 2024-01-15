@@ -37,6 +37,10 @@ const SignModel = mongoose.Schema({
         required: true,
         type: String,
     },
+        "isAdmin": {
+            type: Boolean,
+            default: false, // Default value is false, change if needed
+        },
 
 },
     {versionKey: false}
