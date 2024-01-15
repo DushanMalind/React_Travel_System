@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {ChangeEvent, Component} from "react";
 import axios from "axios";
 
 
@@ -269,6 +269,27 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         );
     }
 
+
+    convertBase64 = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            console.log(reader);
+
+            reader.onload = () => {
+                // @ts-ignore
+                this.setState({
+                    image: reader.result as string,
+                });
+            };
+
+            reader.onerror = (error) => {
+                console.log("Error:", error);
+            };
+        }
+    };
 
 
     private onClickWindowDownAndUp = () => {
