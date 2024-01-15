@@ -1,7 +1,7 @@
 import {ChangeEvent, Component} from "react";
 import axios from "axios";
 
-import { ToastContainer, toast } from 'react-toastify';
+import {ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {data} from "autoprefixer";
 
@@ -205,7 +205,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
 
                             <button
                                 className="text-white bg-yellow-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                type="button">Update
+                                type="button" onClick={this.onUpdateClick}>Update
+                                <ToastContainer/>
                             </button>
 
                             <button
@@ -424,6 +425,45 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         }
     }
 
+    private onUpdateClick = () => {
+        try {
+            this.api.put('product/update/'+this.state.id,{
+                id:this.state.id,
+                room:this.state.room,
+                title:this.state.title,
+                roomCount:this.state.roomCount,
+                description:this.state.description,
+                price:this.state.price,
+                image:this.state.image
+            }).then(async (res:{data: any}) =>{
+                let jsonData=res.data;
+                //toast.success("Success Update Form Data");
+                toast.success('Success Update Form Data', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+                await this.fetchData();
+                console.log(jsonData);
+                this.onClickClearData();
+            }).catch((error:any)=>{
+                console.log("Axios error",error)
+                toast("Error Update Form Data "+ error);
+            })
+        }catch (error){
+            console.log("Update Not Form data",error)
+            toast("Update Not Form Data "+ error);
+        }
+        /*finally {
+            this.onClickWindowDownAndUp();
+        }*/
+    }
 
 
 
