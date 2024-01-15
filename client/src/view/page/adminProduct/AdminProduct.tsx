@@ -209,6 +209,11 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             </button>
 
                             <button
+                                className="text-white bg-purple-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button" onClick={this.onClickClearData}>Clear
+                            </button>
+
+                            <button
                                 className="text-white bg-red-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 type="button">Delete
                             </button>
@@ -361,6 +366,17 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         this.onClickWindowDownAndUp();
     };
 
+    private onClickClearData = () => {
+        this.setState({
+            id: 0,
+            room: 'Room',
+            title: '',
+            roomCount: '',
+            description: '',
+            price: 0,
+            image: '',
+        })
+    }
 
     handleMessageInputOnChange(event:{target:{value:any; name:any}}){
         const target=event.target;

@@ -15,5 +15,7 @@ router.get('/all',productController.getAllProduct);
 
 router.post('/save',productController.saveProduct);
 
+router.put('/update/:id',productController.updateProduct);
+
 
 module.exports=router;
