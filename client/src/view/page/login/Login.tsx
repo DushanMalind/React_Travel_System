@@ -186,7 +186,7 @@ export class Login extends Component<LoginProps,LoginState> {
                         });
 
                         if (jsonData.isAdmin) {
-                            window.location.href = "/contact";
+                            window.location.href = "/customer";
                         } else {
                             window.location.href = "/admin";
                         }

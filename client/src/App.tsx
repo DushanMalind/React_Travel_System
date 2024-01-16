@@ -6,8 +6,7 @@ import {DefaultLayout} from "./view/common/DefaultLayout/DefaultLayout";
 import {Login} from "./view/page/login/Login";
 import {SignIn} from "./view/page/signIn/SignIn";
 import {Admin} from "./view/page/admin/Admin";
-import {AdminDefaultLayout} from "./view/common/AdminDeafultLayout/AdminDefaultLayout";
-import {AdminProduct} from "./view/page/adminProduct/AdminProduct";
+import {Customer} from "./view/page/customer/Customer";
 
 
 
@@ -23,6 +22,7 @@ function App() {
           <Route path="/sign" Component={SignIn}></Route>
 
           <Route path="/admin/*" Component={Admin}></Route>
+          <Route path="/customer/*" Component={Customer}></Route>
           {/*<Route path="/addRoom" Component={AdminProduct}></Route>*/}
 
 
