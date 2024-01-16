@@ -1,61 +1,67 @@
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
-const CustomerRoom=mongoose.Schema({
-   "id":{
-        required:true,
-        type:Number,
+const CustomerRoom = mongoose.Schema({
+        "id": {
+            required: true,
+            type: Number,
+
+        },
+        "room": {
+            required: true,
+            type: String
+        },
+
+        "image": {
+            required: true,
+            type: String
+        },
+
+        "title": {
+            required: true,
+            type: String
+        },
+
+        "roomCount": {
+            required: true,
+            type: String
+        },
+
+        "description": {
+            required: true,
+            type: String
+        },
+
+        "price": {
+            required: true,
+            type: Number
+        },
+
+        "availability": {
+            required: true,
+            type: String,
+            validate: {
+                validator: function (value) {
+                    // Your custom validation logic for the 'availability' field
+                    return ['available', 'not available'].includes(value.toLowerCase());
+                },
+                message: props => `${props.value} is not a valid availability status. Use 'available' or 'not available'.`,
+            },
+        },
+
+        "roomsIsBooked": {
+            required: true,
+            type: Boolean,
+            default: false
+
+        },
+
 
     },
-    "room":{
-        required:true,
-        type:String
-    },
-
-    "image":{
-        required:true,
-        type:String
-    },
-
-    "title":{
-        required:true,
-        type:String
-    },
-
-    "roomCount":{
-        required:true,
-        type:String
-    },
-
-    "description":{
-        required:true,
-        type:String
-    },
-
-    "price":{
-        required:true,
-        type:Number
-    },
-
-    "roomsIsAvailable":{
-        required:true,
-        type:Boolean,
-        default:true
-    },
-
-    "roomsIsBooked":{
-        required:true,
-        type:Boolean,
-        default:false
-
-    },
-
-
-},
     {
-        versionKey:false
+        versionKey: false
     }
 );
 
-const customerRoom=mongoose.model('CustomerRoom',CustomerRoom);
+const customerRoom = mongoose.model('CustomerRoom', CustomerRoom);
 
-module.exports=customerRoom;
+module.exports = customerRoom;
