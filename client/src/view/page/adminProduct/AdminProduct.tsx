@@ -102,6 +102,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                         <h3 className="text-4xl  font-semibold">
                             ADD Room
                         </h3>
+
                         {/* <button type="button" onClick={this.onClickWindowDownAndUp} id="product-modal"
                                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                                 data-modal-toggle="product-modal">
@@ -115,7 +116,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
                     <div id="product-modal" className="p-6 space-y-6 hidden">
-                       {/* <label htmlFor="product-name" className="text-sm font-medium text-gray-900 block mb-2">
+                        {/* <label htmlFor="product-name" className="text-sm font-medium text-gray-900 block mb-2">
                             {this.state.id}
                         </label>*/}
                         <form action="#">
@@ -124,7 +125,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
                                     <input type="text" name="id" id="id"
-                                           value={this.state.id} readOnly={true}
+                                           value={this.state.id} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="ID"/>
                                 </div>
@@ -228,13 +230,19 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                 <ToastContainer/>
                             </button>
 
+                            <button
+                                className="text-white bg-emerald-900 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button" onClick={this.idGenarate}>Id Genarate
+                                <ToastContainer/>
+                            </button>
+
                         </div>
 
                     </div>
 
 
                     <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
+                        <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
                         <table id="example "
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
@@ -513,17 +521,21 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
     }
 
 
+    private idGenarate = async () => {
+        await this.dataBaseLastId();
+    }
 
-    private onClickWindowDownAndUp = () => {
+
+    private onClickWindowDownAndUp = async () => {
         const modal = document.getElementById('product-modal');
         const modal2 = document.getElementById('table-hide');
-        this.dataBaseLastId();
+        //await this.dataBaseLastId();
 
         if (modal) {
             modal.classList.toggle('hidden');
             // @ts-ignore
             modal2.classList.toggle('hidden')
-        }else {
+        } else {
             console.log("modal not found")
         }
 
