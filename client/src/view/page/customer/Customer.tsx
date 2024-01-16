@@ -2,15 +2,46 @@ import {Component} from "react";
 
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
+import axios from "axios";
+import {CustomerProduct} from "../../common/CustomerProduct/CustomerProduct";
 
 
 export class Customer extends Component {
+    private api:any;
+
+    constructor(props:{} | Readonly<{}>) {
+        super(props);
+        this.api=axios.create({baseURL:`http://localhost:4000`})
+        this.state={
+            data:[],
+        }
+    }
+
+    componentDidMount() {
+        this.fetchData()
+    }
+
+    fetchData= async () =>{
+        try {
+            this.api.get('/product/all').then((res:{data:any}) =>{
+                const jsonData=res.data;
+                this.setState({data:jsonData});
+            }).catch((error:any) =>{
+                console.log("Axios Error",error);
+            });
+        }catch (error){
+            console.log("Data NOT Loard",error);
+        }
+    }
+
     render() {
+        // @ts-ignore
+        const {data}=this.state;
         return (
+
             <>
                 <header
-                    className="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
+                    className=" inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
                     <div className="px-4">
                         <div className="flex items-center justify-between">
                             <div className="flex shrink-0">
@@ -40,10 +71,14 @@ export class Customer extends Component {
 
 
                 <main className="flex-grow">
-                    <div className="flex flex-col items-center justify-center gap-6 py-12">
-                        <h1 className="text-3xl font-semibold text-gray-900">Welcome to the customer page</h1>
-                        <p className="text-gray-700">This is the customer page</p>
-                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
+
+                        {
+                            data.map((product:any)=>(
+                                <CustomerProduct key={product.id} data={product}/>
+                            ))
+                        }
+                        </div>
                 </main>
             </>
         );
