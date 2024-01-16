@@ -14,6 +14,7 @@ var indexRouter = require('./routes/index');
 var productRouter = require('./routes/Product');
 var userRouter = require('./routes/user');
 var signUserRouter=require('./routes/SignUser');
+var customerRouter=require('./routes/Customer');
 
 var bodyParser=require('body-parser');
 
@@ -43,6 +44,7 @@ app.use('/', indexRouter);
 app.use('/product', productRouter);
 app.use('/user', userRouter);
 app.use('/signUser',signUserRouter);
+app.use('/customer',customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
