@@ -57,7 +57,7 @@ export class Product extends Component <ProductProps,ProductState>{
                                 className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
                                 uppercase font-semibold tracking-wide ml-2">New</span>*/}
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
-                                {data.roomsCount}
+                                {data.roomCount}
                             </div>
                         </div>
 

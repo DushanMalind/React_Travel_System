@@ -1,12 +1,7 @@
 const mongoose=require('mongoose');
 
 const CustomerRoom=mongoose.Schema({
-    "id":{
-        required:true,
-        type:Number,
-        unique:true,
-        index:true
-    },
+
 
     "room":{
         required:true,
@@ -40,16 +35,16 @@ const CustomerRoom=mongoose.Schema({
 
     "roomsIsAvailable":{
         required:true,
-        type:Boolean
+        type:Boolean,
+        default:true
     },
 
     "roomsIsBooked":{
         required:true,
-        type:Boolean
+        type:Boolean,
+        default:false
+
     },
-
-
-
 
 
 },
@@ -58,6 +53,6 @@ const CustomerRoom=mongoose.Schema({
     }
 );
 
-const customerRoom=mongoose.model('customerRoomModel',CustomerRoom);
+const customerRoom=mongoose.model('CustomerRoom',CustomerRoom);
 
 module.exports=customerRoom;
