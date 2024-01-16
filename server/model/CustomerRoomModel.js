@@ -1,8 +1,11 @@
 const mongoose=require('mongoose');
 
 const CustomerRoom=mongoose.Schema({
+   "id":{
+        required:true,
+        type:Number,
 
-
+    },
     "room":{
         required:true,
         type:String

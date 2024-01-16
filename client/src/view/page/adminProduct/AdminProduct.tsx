@@ -20,6 +20,7 @@ interface AdminProductState {
     image: string,
     data:any[];
     isButtonDisabled: boolean;
+    selectedAvailability: string;
 
 
 }
@@ -42,6 +43,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             price: 0,
             image: '',
             data: [],
+            selectedAvailability: 'available',
 
 
         }
@@ -183,6 +185,23 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                            placeholder="Image"/>
                                 </div>
 
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="availability"
+                                           className="text-sm font-medium text-gray-900 block mb-2">
+                                        Availability
+                                    </label>
+                                    <select
+                                        name="availability"
+                                        id="availability"
+                                        value={this.state.selectedAvailability}
+                                        onChange={this.handleAvailabilityChange}
+                                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm
+                                        rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">
+                                        <option value="available">Available</option>
+                                        <option value="notAvailable">Not Available</option>
+                                    </select>
+                                </div>
+
                                 {/* <div className="col-span-full">
                                     <label htmlFor="product-details"
                                            className="text-sm font-medium text-gray-900 block mb-2">Product
@@ -241,9 +260,9 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                     </div>
 
 
-                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <div id="table-hide"  className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <h2 className="text-2xl font-bold mb-4">Room Datatable</h2>
-                        <table id="example "
+                        <table id="example"
                                className="table-auto w-full table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
                             <tr className="border-black border-[2px] px-1">
@@ -254,6 +273,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                 <th className="border-black border-[0.5px] px-4 py-2">Description</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Price</th>
                                 <th className="border-black border-[0.5px] px-4 py-2">Image</th>
+                                <th className="border-black border-[0.5px] px-4 py-2">Available</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -265,10 +285,11 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.description}</td>
+                                    <td className="text-[8px] border-black border-[0.5px] px-1 py-2 ">{item.description}</td>
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
                                     <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img
                                         src={item.image} alt="Room"/>}</td>
+                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.availability}</td>
                                 </tr>
 
 
@@ -349,6 +370,9 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
         );
     }
 
+    handleAvailabilityChange = (event: ChangeEvent<HTMLSelectElement>) => {
+        this.setState({ selectedAvailability: event.target.value });
+    };
 
     convertBase64 = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -380,6 +404,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             description: item.description,
             price: item.price,
             image: item.image,
+            selectedAvailability: item.availability,
         });
         this.onClickWindowDownAndUp();
     };
@@ -393,6 +418,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
             description: '',
             price: 0,
             image: '',
+            selectedAvailability: 'available',
         })
     }
 
@@ -417,7 +443,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                 roomCount:this.state.roomCount,
                 description:this.state.description,
                 price:this.state.price,
-                image:this.state.image
+                image:this.state.image,
+                availability:this.state.selectedAvailability,
             }).then(async (res: { data: any }) => {
                 let jsonData = res.data;
                 toast("Success Submit Form Data" + jsonData);
@@ -453,7 +480,8 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                 roomCount:this.state.roomCount,
                 description:this.state.description,
                 price:this.state.price,
-                image:this.state.image
+                image:this.state.image,
+                availability:this.state.selectedAvailability,
             }).then(async (res:{data: any}) =>{
                 let jsonData=res.data;
                 //toast.success("Success Update Form Data");

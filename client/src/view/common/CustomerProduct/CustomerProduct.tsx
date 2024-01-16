@@ -24,6 +24,7 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
         }
     }
     render() {
+
         const {data}= this.props;
         return (
             <>
@@ -54,8 +55,9 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">${data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
-                            px-4 rounded" onClick={this.handleClick}>
+                            px-4 rounded" onClick={this.handleClick}  disabled={this.state.isButtonDisabled}>
                                 By Now
+
                                 <ToastContainer/>
                             </button>
                         </div>
@@ -67,8 +69,9 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
 
     private handleClick = () => {
         try {
-            this.setState({isButtonDisabled: true});
+            //this.setState({isButtonDisabled: false});
             this.api.post(`/customer/byTheRoom`, {
+                id: this.props.data.id,
                 title: this.props.data.title,
                 price: this.props.data.price,
                 image: this.props.data.image,
@@ -79,14 +82,18 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                 roomsIsBooked: this.props.data.roomsIsBooked,
             }).then((response: any) => {
                 console.log("By Room",response);
-                toast("By Room");
+                toast("By Room Successfully");
+                //this.setState({ isButtonDisabled: true });
             }).catch((error: any) => {
                 console.log("Not By Room",error)
                 toast("Not By Room"+ error);
+            }).finally(() => {
+                //this.setState({isButtonDisabled: false});
             });
         }catch (error) {
             console.log("Not By Room",error)
             toast("Not By Room"+ error);
+            //this.setState({ isButtonDisabled: false });
         }
     }
 

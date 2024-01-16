@@ -36,6 +36,11 @@ const Product=mongoose.Schema({
     "price":{
         required:true,
         type:Number
+    },
+
+    "availability": {
+        required: true,
+        type: String
     }
 
 },

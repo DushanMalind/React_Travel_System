@@ -4,3 +4,8 @@
     height: 450px;
 
 }
+.text-overflow {
+    white-space: nowrap;
+    overflow-x: auto;
+    text-overflow: ellipsis;
+}
