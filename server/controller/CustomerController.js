@@ -9,7 +9,7 @@ const CustomerController={
             const customerRoomData=req.body;
             console.log(customerRoomData);
             const customerRoom=await CustomerRoom.create(customerRoomData);
-            res.status(200).json("Success By The Room");
+            res.status(200).json("By Room Is Booking.Now You File Payment From");
             console.log(customerRoomData);
 
         }catch (error) {

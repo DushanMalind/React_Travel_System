@@ -71,7 +71,7 @@ export class Customer extends Component {
 
 
                 <main className="flex-grow">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
+                    <div className="overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
 
                         {
                             data.map((product:any)=>(
@@ -79,7 +79,12 @@ export class Customer extends Component {
                             ))
                         }
                         </div>
+
+
+
                 </main>
+
+
             </>
         );
     }
