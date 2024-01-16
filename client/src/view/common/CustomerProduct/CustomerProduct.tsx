@@ -50,7 +50,7 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">${data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
-                            px-4 rounded" disabled={this.state.isButtonDisabled}>
+                            px-4 rounded" >
                                 <ToastContainer/>By Now
                             </button>
                         </div>
