@@ -50,6 +50,15 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
 
     render() {
 
+        const buttonStyle = {
+            backgroundColor: this.state.isButtonDisabled ? 'gray' : 'bg-blue-500',
+            color: 'white',
+            fontWeight: 'bold',
+            padding: '10px',
+            borderRadius: '5px',
+            cursor: this.state.isButtonDisabled ? 'not-allowed' : 'pointer',
+        };
+
         const {data}= this.props;
         return (
             <>
@@ -81,7 +90,7 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">${data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
-                            px-4 rounded" onClick={this.handleClick}  disabled={this.state.isButtonDisabled}>
+                            px-4 rounded" onClick={this.handleClick}  disabled={this.state.isButtonDisabled} style={buttonStyle}>
                                 By Now
 
                                 <ToastContainer/>
@@ -136,7 +145,7 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                     console.log("Not By Room", error);
                     toast("Not By Room" + error);
                 }).finally(() => {
-                    // this.setState({ isButtonDisabled: false });
+                     this.setState({ isButtonDisabled: true });
                 });
             } else {
                 console.log("Room not available");
