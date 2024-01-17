@@ -73,8 +73,8 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                             font-medium">{data.room}
                         </div>
                         <div
-                            className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium ${
-                                data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
+                            className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium 
+                            ${data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
                             }`}>{data.availability}
                         </div>
                     </div>
