@@ -28,20 +28,6 @@ const SignController={
         }
     },
 
- /*   getUserName:async function (req,res,next) {
-        try{
-            const emails=req.params.email;
-            const user=await SignModel.findOne({email:emails});
-            res.status(200).json(user);
-        }catch (error) {
-            console.log(error);
-            res.status(500).json({
-                error:"Server Error DOWN"
-            });
-
-        }
-    },*/
-
     getUserLogin:async function (req,res,next) {
         try {
             const {email,password}=req.body;
@@ -76,7 +62,9 @@ const SignController={
                 error:"Server Error DOWN"
             });
         }
-    }
+    },
+
+
 
 
 

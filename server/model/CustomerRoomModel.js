@@ -48,6 +48,31 @@ const CustomerRoom = mongoose.Schema({
             },
         },
 
+      /*  "CustomerId": {
+            required: true,
+            type: Number
+        },*/
+
+        "customerName": {
+            required: true,
+            type: String
+        },
+
+        "customerEmail": {
+            required: true,
+            type: String
+        },
+
+        "customerContact": {
+            required: true,
+            type: String
+        },
+
+        "customerAddress": {
+            required: true,
+            type: String
+        },
+
         "roomsIsBooked": {
             required: true,
             type: Boolean,

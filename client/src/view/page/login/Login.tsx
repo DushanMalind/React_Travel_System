@@ -163,7 +163,7 @@ export class Login extends Component<LoginProps,LoginState> {
     }
 
 
-    private onLoginButtonClick =() =>{
+  /*  private onLoginButtonClick =() =>{
 
         try {
             this.api.post('/signUser/oneUser', {
@@ -185,11 +185,17 @@ export class Login extends Component<LoginProps,LoginState> {
                             theme: "colored",
                         });
 
-                        if (jsonData.isAdmin) {
+                        let redirectUrl = jsonData.isAdmin ? "/customer" : "/admin";
+                        redirectUrl += `?firstName=${jsonData.firstName}&email=${jsonData.email}`;
+
+                        // Redirecting to the new URL
+                        window.location.href = redirectUrl;
+
+                       /!* if (jsonData.isAdmin) {
                             window.location.href = "/customer";
                         } else {
                             window.location.href = "/admin";
-                        }
+                        }*!/
 
                     }
                 //window.location.href="/admin";
@@ -203,7 +209,48 @@ export class Login extends Component<LoginProps,LoginState> {
             // Handle error, e.g., show a toast notification
             toast.error('Error signing in');
         }
+    }*/
+
+    private onLoginButtonClick = () => {
+        try {
+            this.api.post('/signUser/oneUser', {
+                email: this.state.email,
+                password: this.state.password
+            }).then((res: { data: any }) => {
+                const jsonData = res.data;
+                console.log(jsonData);
+                if (jsonData) {
+                    // Save the jsonData to localStorage
+                    localStorage.setItem('signUserDetails', JSON.stringify(jsonData));
+
+                    toast.success(`Your Successful Login: ${jsonData.firstName}`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
+
+                    // Constructing the URL with parameters
+                    let redirectUrl = jsonData.isAdmin ? "/customer" : "/admin";
+                    //redirectUrl += `?firstName=${jsonData.firstName}&email=${jsonData.email}`;
+                    redirectUrl += `?firstName=${encodeURIComponent(jsonData.firstName)}&email=${encodeURIComponent(jsonData.email)}`;
+
+                    window.location.href = redirectUrl;
+                }
+            }).catch(function (error: any) {
+                console.log("Axios Error", error);
+                toast.error("You don't have an account, Try Sign up first");
+            });
+        } catch (error) {
+            console.error('Error signing in:', error);
+            toast.error('Error signing in');
+        }
     }
+
 
 
 
