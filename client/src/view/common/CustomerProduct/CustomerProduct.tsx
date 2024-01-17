@@ -72,6 +72,11 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
                             font-medium">{data.room}
                         </div>
+                        <div
+                            className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium ${
+                                data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
+                            }`}>{data.availability}
+                        </div>
                     </div>
                     <div className="p-4">
 
@@ -90,7 +95,8 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">${data.price}</span>
                             <button id="homeButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2
-                            px-4 rounded" onClick={this.handleClick}  disabled={this.state.isButtonDisabled} style={buttonStyle}>
+                            px-4 rounded" onClick={this.handleClick} disabled={this.state.isButtonDisabled}
+                                    style={buttonStyle}>
                                 By Now
 
                                 <ToastContainer/>
@@ -105,7 +111,6 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
     }
 
 
-
     private handleClick = () => {
         //this.setState({ isFormOpen: true });
 
@@ -113,7 +118,6 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
         try {
 
             const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
-
 
 
             if (this.props.data.availability === 'available') {

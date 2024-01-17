@@ -279,7 +279,7 @@ export class AdminProduct extends Component<AdminProps,AdminProductState> {
                             <tbody>
 
                             {this.state.data.map((item, index) => (
-                                <tr className="border-black border-[0.5px] px-1" key={index}
+                                <tr className="border-black border-[0.5px] px-1 hover:bg-orange-100" key={index}
                                     onClick={() => this.handleTableRowClick(item)}>
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
                                     <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
