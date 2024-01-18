@@ -75,8 +75,8 @@ const CustomerRoom = mongoose.Schema({
 
         "roomsIsBooked": {
             required: true,
-            type: Boolean,
-            default: false
+            type: String,
+            default: "Not Booked"
 
         },
 

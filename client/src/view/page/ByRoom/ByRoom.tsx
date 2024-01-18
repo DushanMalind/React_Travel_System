@@ -259,14 +259,14 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                className="table-fixed   table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
                             <thead>
                             <tr className="border-black border-[2px] px-1">
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Id</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Room</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Tittle</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">RoomCount</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Available</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Description</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Price</th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Customer
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Id</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Room</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Tittle</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">RoomCount</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Available</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Description</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Price</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase border-[1px]">Customer
                                     Name
                                 </th>
                                 <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Customer
@@ -283,7 +283,38 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                 <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Image</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="bg-white">
+
+                            {this.state.data.map((item, index) => (
+                                <tr>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.id}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200 truncate">{item.room}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.title}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.roomCount}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">
+                                        <span
+                                            className="bg-green-500 text-white py-1 px-2 rounded-full text-xs">{item.availability}</span>
+                                    </td>
+                                    <td className="border-[0.5px] text-[8px] py-4 px-6 border-b border-gray-200">{item.description}</td>
+                                    <td className="py-4 px-6 border-b border-gray-200">
+                                        <span
+                                            className="bg-fuchsia-900 text-white py-1 px-2 rounded-full text-xs">{item.price}</span>
+                                    </td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.customerName}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.customerEmail}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.customerContact}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.customerAddress}</td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">
+                                        <span
+                                            className={`text-white py-1 px-2 rounded-full text-xs
+                            ${item.roomsIsBooked === 'Booked' ? 'bg-green-400 text-white' : 'bg-red-500 text-white'
+                                            }`}>{item.roomsIsBooked}</span>
+                                    </td>
+                                    <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.bookingDateTime}</td>
+                                    <td className="border-[0.5px] border-black items-center justify-center flex w-28 px-1 py-2">{<img
+                                        src={item.image} alt="Room"/>}</td>
+                                </tr>
+                            ))}
 
                             {/*  {this.state.data.map((item, index) => (
                                 <tr className="border-black border-[0.5px] px-1 hover:bg-orange-100" key={index}
