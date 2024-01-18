@@ -347,6 +347,18 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
             </>
         );
     }
+
+    handleMessageInputOnChange(event:{target:{value:any; name:any}}){
+        const target=event.target;
+        const name=target.name
+        const value=target.value;
+
+        // @ts-ignore
+        this.setState({
+            [name]:value
+        })
+    }
+
     private onClickWindowDownAndUp = async () => {
         const modal = document.getElementById('product-modal');
         const modal2 = document.getElementById('table-hide');
