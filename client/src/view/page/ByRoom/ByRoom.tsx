@@ -229,7 +229,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                            className="text-sm font-medium text-emerald-500 block mb-2">Room Book (Only Edit)</label>
                                     <input type="text" name="roomsIsBooked" id="roomsIsBooked"
                                            value={this.state.roomsIsBooked} onChange={this.handleMessageInputOnChange}
-                                           readOnly={false}
+
                                            className="shadow-sm bg-gray-50 border border-green-500 text-red-600 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -250,7 +250,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                         </form>
 
                         <div className="p-6 border-t space-x-3 border-gray-200 rounded-b">
-                            <button
+                           {/* <button
                                 className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 type="button">Save all
                                 <ToastContainer
@@ -265,17 +265,17 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     pauseOnHover
                                     theme="light"
                                 />
-                            </button>
+                            </button>*/}
 
                             <button
                                 className="text-white bg-yellow-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                type="button">Update
+                                type="button" onClick={this.onUpdateClick}>Update
                                 <ToastContainer/>
                             </button>
 
                             <button
                                 className="text-white bg-purple-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                type="button" >Clear
+                                type="button" onClick={this.onClickClearData}>Clear
                                 <ToastContainer/>
                             </button>
 
@@ -356,6 +356,57 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                 </div>
             </>
         );
+    }
+
+    private onUpdateClick = async () => {
+        try {
+            this.api.put('customer/updateCustomerRoom/'+this.state.id,{
+
+                roomsIsBooked:this.state.roomsIsBooked
+
+            }).then(async (res:{data:any}) =>{
+                let jsonData=res.data;
+
+                toast.success('Success Update Form Data', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                });
+                await this.fetchData();
+                console.log(jsonData)
+                this.onClickClearData();
+                this.onClickWindowDownAndUp();
+            }).catch((error:any) =>{
+                console.log("Axios Error",error);
+                toast.error("Axios Error "+ error);
+            })
+        }catch (error){
+            console.log("Update Not Form data",error)
+            toast.error("Update Not Form Data "+ error);
+        }
+
+
+    }
+
+    private onClickClearData =  () => {
+        this.setState({
+            id: 0,
+            title: '',
+            roomCount: '',
+            description: '',
+            price: 0,
+            customerName: '',
+            customerEmail: '',
+            customerContact: '',
+            roomsIsBooked: '',
+            bookingDateTime: '',
+        })
     }
 
     handleTableRowClick = (item: any) => {
