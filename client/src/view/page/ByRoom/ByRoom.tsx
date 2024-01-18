@@ -12,6 +12,18 @@ interface ByRoomState {
     isButtonDisabled: boolean
     isFormOpen: boolean
     data: any[]
+    id: number,
+    title: string,
+    roomCount: string,
+    description: string,
+    price: number,
+    customerName: string,
+    customerEmail: string,
+    customerContact: string,
+    roomsIsBooked: string,
+    bookingDateTime: string,
+
+
 }
 
 export class ByRoom extends Component <ByRoomProps,ByRoomState> {
@@ -315,25 +327,6 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                         src={item.image} alt="Room"/>}</td>
                                 </tr>
                             ))}
-
-                            {/*  {this.state.data.map((item, index) => (
-                                <tr className="border-black border-[0.5px] px-1 hover:bg-orange-100" key={index}
-                                    onClick={() => this.handleTableRowClick(item)}>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.id}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.room}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.roomCount}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.title}</td>
-                                    <td className="text-[8px] border-black border-[0.5px] px-1 py-2 ">{item.description}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.price}</td>
-                                    <td className="border-black items-center justify-center flex w-28 px-1 py-2">{<img
-                                        src={item.image} alt="Room"/>}</td>
-                                    <td className="text-[12px] border-black border-[0.5px] px-1 py-2">{item.availability}</td>
-                                </tr>
-
-
-                            ))}*/}
-
-
                             </tbody>
                         </table>
 
