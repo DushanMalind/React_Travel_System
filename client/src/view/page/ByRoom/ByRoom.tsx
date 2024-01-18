@@ -48,6 +48,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
             roomsIsBooked: '',
             bookingDateTime: '',
         }
+        this.handleMessageInputOnChange=this.handleMessageInputOnChange.bind(this);
     }
 
     componentDidMount() {
@@ -145,7 +146,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
                                     <input type="text" name="id" id="id"
-
+                                             value={this.state.id} onChange={this.handleMessageInputOnChange}
                                            readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="ID"/>
@@ -155,7 +156,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Title</label>
                                     <input type="text" name="title" id="title"
-
+                                           value={this.state.title} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -163,7 +165,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Room Count</label>
                                     <input type="text" name="roomCount" id="roomCount"
-
+                                           value={this.state.roomCount} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -172,7 +175,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Description</label>
                                     <input type="text" name="description" id="description"
-
+                                           value={this.state.description} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Text"/>
                                 </div>
@@ -181,7 +185,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="price"
                                            className="text-sm font-medium text-gray-900 block mb-2">Price</label>
                                     <input type="number" name="price" id="price"
-
+                                           value={this.state.price} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="2300"/>
                                 </div>
@@ -191,7 +196,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Name</label>
                                     <input type="text" name="room" id="room"
-
+                                           value={this.state.customerName} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -201,7 +207,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Email</label>
                                     <input type="text" name="room" id="room"
-
+                                           value={this.state.customerEmail} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -211,7 +218,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Contact</label>
                                     <input type="text" name="room" id="room"
-
+                                           value={this.state.customerContact} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -220,7 +228,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Room Book</label>
                                     <input type="text" name="room" id="room"
-
+                                           value={this.state.roomsIsBooked} onChange={this.handleMessageInputOnChange}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
@@ -229,7 +237,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Date And Time</label>
                                     <input type="text" name="room" id="room"
-
+                                           value={this.state.bookingDateTime} onChange={this.handleMessageInputOnChange}
+                                           readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
