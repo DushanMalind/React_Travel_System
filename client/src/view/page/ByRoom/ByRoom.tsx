@@ -2,6 +2,7 @@ import {Component} from "react";
 
 import {ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 interface ByRoomProps {
     data: any
@@ -19,10 +20,30 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
 
     constructor(props:any) {
         super(props);
+        this.api = axios.create({baseURL: `http://localhost:4000`});
         this.state = {
             isButtonDisabled: false,
             isFormOpen: false,
             data: []
+        }
+    }
+
+    componentDidMount() {
+        this.fetchData()
+
+    }
+
+    fetchData= async () =>{
+        try {
+            this.api.get('/customer/getAllCustomerRoom').then((res:{data:any}) =>{
+                const jsonData=res.data;
+                // @ts-ignore
+                this.setState({data:jsonData});
+            }).catch((error:any) =>{
+                console.log("Axios Error",error);
+            });
+        }catch (error){
+            console.log("Data NOT Loard",error);
         }
     }
 
