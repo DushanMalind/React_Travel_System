@@ -7,6 +7,10 @@ import {Login} from "./view/page/login/Login";
 import {SignIn} from "./view/page/signIn/SignIn";
 import {Admin} from "./view/page/admin/Admin";
 import {Customer} from "./view/page/customer/Customer";
+import {CustomerDetails} from "./view/page/CustomerDetails/CustomerDetails";
+
+
+
 
 
 
@@ -23,6 +27,10 @@ function App() {
 
           <Route path="/admin/*" Component={Admin}></Route>
           <Route path="/customer/*" Component={Customer}></Route>
+          <Route path="/customer/yourDetails" Component={CustomerDetails}></Route>
+
+
+
           {/*<Route path="/addRoom" Component={AdminProduct}></Route>*/}
 
 
