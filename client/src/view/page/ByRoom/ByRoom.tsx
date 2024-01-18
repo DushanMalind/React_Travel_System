@@ -357,6 +357,22 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
         );
     }
 
+    handleTableRowClick = (item: any) => {
+        this.setState({
+            id: item.id,
+            title: item.title,
+            roomCount: item.roomCount,
+            description: item.description,
+            price: item.price,
+            customerName: item.customerName,
+            customerEmail: item.customerEmail,
+            customerContact: item.customerContact,
+            roomsIsBooked: item.roomsIsBooked,
+            bookingDateTime: item.bookingDateTime,
+        })
+        this.onClickWindowDownAndUp();
+    };
+
     handleMessageInputOnChange(event:{target:{value:any; name:any}}){
         const target=event.target;
         const name=target.name
