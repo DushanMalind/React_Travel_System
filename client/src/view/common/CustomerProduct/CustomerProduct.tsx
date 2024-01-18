@@ -2,6 +2,7 @@ import {Component} from "react";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import moment from "moment-timezone";
 
 interface ProductProps {
     data: any
@@ -122,6 +123,13 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
 
             if (this.props.data.availability === 'available') {
                 // this.setState({ isButtonDisabled: true });
+                const currentDate = new Date();
+                const formattedDate = currentDate.toISOString();
+
+               /* const currentDate = moment().tz('Asia/Colombo');
+                const formattedDate = currentDate.toISOString();*/
+
+
 
                 this.api.post(`/customer/byTheRoom`, {
                     id: this.props.data.id,
@@ -139,6 +147,7 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
                     customerEmail: signUserDetails.email,
                     customerContact: signUserDetails.contact,
                     customerAddress: signUserDetails.address,
+                    bookingDateTime: formattedDate,
 
 
 

@@ -80,6 +80,13 @@ const CustomerRoom = mongoose.Schema({
 
         },
 
+        "bookingDateTime": {
+            type: Date,
+            default: Date.now,
+            required: true
+        },
+
+
 
     },
     {
