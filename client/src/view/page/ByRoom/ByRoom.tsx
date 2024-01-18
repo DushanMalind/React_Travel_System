@@ -381,7 +381,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                 await this.fetchData();
                 console.log(jsonData)
                 this.onClickClearData();
-                this.onClickWindowDownAndUp();
+                //this.onClickWindowDownAndUp();
             }).catch((error:any) =>{
                 console.log("Axios Error",error);
                 toast.error("Axios Error "+ error);

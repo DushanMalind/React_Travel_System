@@ -37,6 +37,7 @@ export class Customer extends Component {
     render() {
         // @ts-ignore
         const {data}=this.state;
+        const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
         return (
 
             <>
@@ -45,12 +46,27 @@ export class Customer extends Component {
                     <div className="px-4">
                         <div className="flex items-center justify-between">
                             <div className="flex shrink-0">
-                                <a aria-current="page" className="flex items-center" href="/">
-                                    <img className="h-7 w-auto"
-                                         src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                                         alt=""/>
-                                    <p className="sr-only">Website Title</p>
-                                </a>
+                                {/* <div className="flex items-center ">
+                                    <img
+                                        src="https://static01.nyt.com/images/2019/11/08/world/08quebec/08quebec-superJumbo.jpg"
+                                        className="object-cover btn- h-9 w-9 rounded-full mr-2 bg-green-400"
+                                        alt=""/>
+                                    <p className="font-semibold text-sm">{signUserDetails.firstName + " " + signUserDetails.lastName}</p>
+                                </div>*/}
+                                <div className="flex items-center">
+                                    <div className="relative">
+                                        <img
+                                            src="https://static01.nyt.com/images/2019/11/08/world/08quebec/08quebec-superJumbo.jpg"
+                                            className="object-cover btn- h-9 w-9 rounded-full mr-2"
+                                            alt=""
+                                        />
+                                        <div
+                                            className="absolute bottom-0 right-1 h-3 w-3 bg-green-400 rounded-full"></div>
+                                    </div>
+                                    <p className="font-semibold text-sm">{signUserDetails.firstName + " " + signUserDetails.lastName}</p>
+                                </div>
+
+
                             </div>
                             <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
                                 <a aria-current="page"
@@ -60,7 +76,7 @@ export class Customer extends Component {
                                    href="#">Pricing</a>
                             </div>
                             <div className="flex items-center justify-end gap-3">
-                               {/* <a className="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
+                                {/* <a className="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
                                    href="/login">Sign in</a>*/}
                                 <a className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                                    href="/login">Log Out</a>
@@ -71,15 +87,15 @@ export class Customer extends Component {
 
 
                 <main className="flex-grow">
-                    <div className="overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
+                    <div
+                        className="overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
 
                         {
-                            data.map((product:any)=>(
+                            data.map((product: any) => (
                                 <CustomerProduct key={product.id} data={product}/>
                             ))
                         }
-                        </div>
-
+                    </div>
 
 
                 </main>
