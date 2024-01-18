@@ -3,9 +3,11 @@ import {Link, Route, Routes} from "react-router-dom";
 import {AdminMainContent} from "../../common/AdminMainContent/AdminMainContent";
 import {AdminProduct} from "../adminProduct/AdminProduct";
 import {AdminHome} from "../adminHome/AdminHome";
+import axios from "axios";
 
 export class Admin extends Component {
     render() {
+        const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
         return (
             <>
                 <div>
@@ -65,12 +67,17 @@ export class Admin extends Component {
                                             <p className="px-1.5 py-0.5 font-semibold text-xs items-center bg-indigo-600 text-white rounded-full inline-flex
                 absolute -top-px -right-1">2</p>
                                         </div>
-                                        <div className="justify-center items-center flex relative">
-                                            <img
-                                                src="https://static01.nyt.com/images/2019/11/08/world/08quebec/08quebec-superJumbo.jpg"
-                                                className="object-cover btn- h-9 w-9 rounded-full mr-2 bg-gray-300"
-                                                alt=""/>
-                                            <p className="font-semibold text-sm">Marrie Currie</p>
+                                        <div className="flex items-center">
+                                            <div className="relative">
+                                                <img
+                                                    src="https://static01.nyt.com/images/2019/11/08/world/08quebec/08quebec-superJumbo.jpg"
+                                                    className="object-cover btn- h-9 w-9 rounded-full mr-2"
+                                                    alt=""
+                                                />
+                                                <div
+                                                    className="absolute bottom-0 right-1 h-3 w-3 bg-green-400 rounded-full"></div>
+                                            </div>
+                                            <p className="font-semibold text-sm">{signUserDetails.firstName + " " + signUserDetails.lastName}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -83,8 +90,6 @@ export class Admin extends Component {
                     <div className="flex flex-col h-screen p-3 bg-gray-800 shadow w-60">
                         <div className="space-y-3">
                             <div className="flex items-center">
-
-
 
 
                                 <h2 className="text-xl font-bold text-white">Dashboard</h2>

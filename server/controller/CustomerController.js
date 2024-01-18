@@ -54,7 +54,19 @@ const CustomerController={
                 error:"Server Not Update Error DOWN"
             });
         }
-    }
+    },
+
+    userCount:async function (req,res,next) {
+        try{
+            const userCount=await CustomerRoom.count();
+            res.status(200).json(userCount);
+        }catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error:"Server Error DOWN"
+            });
+        }
+    },
 
 
 
