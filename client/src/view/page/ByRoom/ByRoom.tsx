@@ -36,7 +36,17 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
         this.state = {
             isButtonDisabled: false,
             isFormOpen: false,
-            data: []
+            data: [],
+            id: 0,
+            title: '',
+            roomCount: '',
+            description: '',
+            price: 0,
+            customerName: '',
+            customerEmail: '',
+            customerContact: '',
+            roomsIsBooked: '',
+            bookingDateTime: '',
         }
     }
 
