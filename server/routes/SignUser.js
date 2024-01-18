@@ -9,6 +9,7 @@ router.post('/save',signController.saveUser);
 
 router.post('/oneUser',signController.getUserLogin);
 
+router.post('/updateUser',signController.updateUser);
 
 /*router.get('/find/:email',signController.getUserName);*/
 

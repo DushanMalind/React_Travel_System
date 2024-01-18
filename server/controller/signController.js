@@ -64,6 +64,32 @@ const SignController={
         }
     },
 
+    updateUser: async function (req, res, next) {
+        try {
+            const { id, firstName, lastName, address, contact, email, password, confirmPassword } = req.body;
+            const updatedUser = await SignModel.findByIdAndUpdate(
+                id,
+                {
+                    firstName,
+                    lastName,
+                    address,
+                    contact,
+                    email,
+                    password,
+                    confirmPassword,
+                },
+                { new: true }
+            );
+
+            res.status(200).json(updatedUser);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Server Error DOWN",
+            });
+        }
+    },
+
 
 
 

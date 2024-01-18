@@ -116,11 +116,12 @@ export class Customer extends Component {
                                     <Link to="/customer">Rooms</Link>
                                 </a>
                             </li>
-                            <li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
+                            {/*<li className="pt-1.5 font-dm text-sm font-medium text-slate-700">
                                 <a href="#">
                                     <Link to="/customer/yourDetails">Your Details</Link>
                                 </a>
-                            </li>
+                            </li>*/}
+
                         </ul>
                         <div className="flex-grow"></div>
                         <div className="hidden items-center justify-center gap-6 md:flex mr-8">

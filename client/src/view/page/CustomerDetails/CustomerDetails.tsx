@@ -1,11 +1,85 @@
-import {Component} from "react";
+import {ChangeEvent, Component} from "react";
 import logo from "../../../images/tour2.jpg";
 import {Link} from "react-router-dom";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
+// @ts-ignore
 
-export class CustomerDetails extends Component {
+interface Propse {
+    data:any
+}
+
+interface State {
+    firstName: string;
+    lastName: string;
+    address: string;
+    contact: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export class CustomerDetails extends Component<Propse, State>  {
+
+    constructor(props: {} | Readonly<{}>) {
+        // @ts-ignore
+        super(props);
+        const signUserDetails = JSON.parse(localStorage.getItem("signUserDetails") || "{}");
+        this.state = {
+            firstName: signUserDetails.firstName || "",
+            lastName: signUserDetails.lastName || "",
+            address: signUserDetails.address || "",
+            contact: signUserDetails.contact || "",
+            email: signUserDetails.email || "",
+            password: signUserDetails.password || "",
+            confirmPassword: signUserDetails.confirmPassword || "",
+        };
+    }
+
+    handleMessageInputOnChange(event: ChangeEvent<HTMLInputElement>) {
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value,
+        } as Pick<State, keyof State>);
+    }
+
+    private OnUpdateButtonClick = async () => {
+        try {
+
+            /*const signUserDetails = JSON.parse(localStorage.getItem("signUserDetails") || "{}");
+            const { firstName, lastName, address, contact, email, password, confirmPassword } = this.state;
+
+            // Update the local storage
+            const requestBody = {
+                id: signUserDetails.id,
+                firstName,
+                lastName,
+                address,
+                contact,
+                email,
+                password,
+                confirmPassword,
+            };
+
+
+            // Update the server data
+            await fetch('/signUser/updateUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(requestBody),
+            });
+
+            toast("User details updated successfully!");*/
+        } catch (error) {
+            console.log("Update Not Form data", error);
+            toast("Update Not Form Data " + error);
+        }
+    };
+
 
     render() {
+
         const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
         return (
             <>
@@ -93,17 +167,18 @@ export class CustomerDetails extends Component {
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="firstName"
                                                     type="text" name="firstName"
-                                                    placeholder="First Name"/>
+                                                    placeholder="First Name"  value={this.state.firstName} onChange={(e) => this.handleMessageInputOnChange(e)}
+                                                />
                                             </div>
                                             <div className="md:ml-2">
                                                 <label
                                                     className="block mb-2 text-sm font-bold text-gray-700 dark:text-white">
-                                                    Last Name
+                                                Last Name
                                                 </label>
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="lastName"
-                                                    type="text" name="lastName"
+                                                    type="text" name="lastName" value={this.state.lastName} onChange={(e) => this.handleMessageInputOnChange(e)}
                                                     placeholder="Last Name"
                                                 />
                                             </div>
@@ -117,8 +192,8 @@ export class CustomerDetails extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="firstName"
-                                                    type="text" name="address"
-                                                    placeholder="Address"/>
+                                                    type="text" name="address" value={this.state.address} onChange={(e) => this.handleMessageInputOnChange(e)}
+                                                    placeholder="Address" />
                                             </div>
                                             <div className="md:ml-2">
                                                 <label
@@ -128,7 +203,7 @@ export class CustomerDetails extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="lastName"
-                                                    type="text" name="contact"
+                                                    type="text" name="contact" value={this.state.contact} onChange={(e) => this.handleMessageInputOnChange(e)}
                                                     placeholder="Contact"
                                                 />
                                             </div>
@@ -141,7 +216,7 @@ export class CustomerDetails extends Component {
                                             <input
                                                 className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                 id="email"
-                                                type="email" name="email"
+                                                type="email" name="email" value={this.state.email} onChange={(e) => this.handleMessageInputOnChange(e)}
                                                 placeholder="Email"
                                             />
                                         </div>
@@ -154,7 +229,7 @@ export class CustomerDetails extends Component {
                                                 <input
                                                     className="w-full px-10 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="password"
-                                                    type="password" name="password"
+                                                    type="password" name="password" value={this.state.password} onChange={(e) => this.handleMessageInputOnChange(e)}
                                                     placeholder="******************"
                                                 />
                                                 <p className="text-xs italic text-red-500">Please
@@ -169,7 +244,7 @@ export class CustomerDetails extends Component {
                                                     className="w-full px-10 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                                     id="confirmPassword"
                                                     type="password"
-                                                    name="confirmPassword"
+                                                    name="confirmPassword" value={this.state.confirmPassword} onChange={(e) => this.handleMessageInputOnChange(e)}
                                                     placeholder="******************"
                                                 />
                                             </div>
@@ -177,7 +252,7 @@ export class CustomerDetails extends Component {
                                         <div className="mb-6 text-center">
                                             <button
                                                 className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
-                                                type="button">
+                                                type="button" onClick={this.OnUpdateButtonClick}>
                                                 <ToastContainer
                                                     position="top-right"
                                                     autoClose={5000}
@@ -205,4 +280,40 @@ export class CustomerDetails extends Component {
             </>
         );
     }
+
+  /*  handleMessageInputOnChange(event:{target:{value:any; name:any}}){
+        const target=event.target;
+        const name=target.name
+        const value=target.value;
+
+        // @ts-ignore
+        this.setState({
+            [name]:value
+        })
+    }
+
+
+    private OnUpdateButtonClick = () => {
+        try {
+
+            const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
+            // @ts-ignore
+            const {firstName, lastName, address, contact, email, password, confirmPassword} = this.state;
+            const data = {
+                firstName: firstName || signUserDetails.firstName,
+                lastName: lastName || signUserDetails.lastName,
+                address: address || signUserDetails.address,
+                contact: contact || signUserDetails.contact,
+                email: email || signUserDetails.email,
+                password: password || signUserDetails.password,
+                confirmPassword: confirmPassword || signUserDetails.confirmPassword
+            }
+            console.log("Update Form data", data)
+            toast("Update Form Data " + data);
+
+        }catch (error){
+            console.log("Update Not Form data",error)
+            toast("Update Not Form Data "+ error);
+        }
+    }*/
 }
