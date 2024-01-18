@@ -9,9 +9,9 @@ interface ByRoomProps {
 }
 
 interface ByRoomState {
-    isButtonDisabled: boolean
-    isFormOpen: boolean
-    data: any[]
+    isButtonDisabled: boolean,
+    isFormOpen: boolean,
+    data: any[],
     id: number,
     title: string,
     roomCount: string,
@@ -195,7 +195,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Name</label>
-                                    <input type="text" name="room" id="room"
+                                    <input type="text" name="customerName" id="customerName"
                                            value={this.state.customerName} onChange={this.handleMessageInputOnChange}
                                            readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -206,7 +206,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Email</label>
-                                    <input type="text" name="room" id="room"
+                                    <input type="text" name="customerEmail" id="customerEmail"
                                            value={this.state.customerEmail} onChange={this.handleMessageInputOnChange}
                                            readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -217,7 +217,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Customer
                                         Contact</label>
-                                    <input type="text" name="room" id="room"
+                                    <input type="text" name="customerContact" id="customerContact"
                                            value={this.state.customerContact} onChange={this.handleMessageInputOnChange}
                                            readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -226,17 +226,18 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
 
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="category"
-                                           className="text-sm font-medium text-gray-900 block mb-2">Room Book</label>
-                                    <input type="text" name="room" id="room"
+                                           className="text-sm font-medium text-emerald-500 block mb-2">Room Book</label>
+                                    <input type="text" name="roomsIsBooked" id="roomsIsBooked"
                                            value={this.state.roomsIsBooked} onChange={this.handleMessageInputOnChange}
-                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           readOnly={false}
+                                           className="shadow-sm bg-gray-50 border border-green-500 text-red-600 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="Title"/>
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="category"
                                            className="text-sm font-medium text-gray-900 block mb-2">Date And Time</label>
-                                    <input type="text" name="room" id="room"
+                                    <input type="text" name="bookingDateTime" id="bookingDateTime"
                                            value={this.state.bookingDateTime} onChange={this.handleMessageInputOnChange}
                                            readOnly={true}
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
@@ -317,7 +318,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                             <tbody className="bg-white">
 
                             {this.state.data.map((item, index) => (
-                                <tr>
+                                <tr key={index} onClick={() => this.handleTableRowClick(item)}>
                                     <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.id}</td>
                                     <td className="border-[0.5px] py-4 px-6 border-b border-gray-200 truncate">{item.room}</td>
                                     <td className="border-[0.5px] py-4 px-6 border-b border-gray-200">{item.title}</td>
