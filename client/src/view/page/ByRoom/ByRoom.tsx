@@ -1,8 +1,37 @@
 import {Component} from "react";
-import {ToastContainer} from "react-toastify";
 
-export class ByRoom extends Component {
+import {ToastContainer, toast, Bounce} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+interface ByRoomProps {
+    data: any
+}
+
+interface ByRoomState {
+    isButtonDisabled: boolean
+    isFormOpen: boolean
+    data: any[]
+}
+
+export class ByRoom extends Component <ByRoomProps,ByRoomState> {
+
+    private api: any;
+
+    constructor(props:any) {
+        super(props);
+        this.state = {
+            isButtonDisabled: false,
+            isFormOpen: false,
+            data: []
+        }
+    }
+
     render() {
+
+        const buttonText = this.state.isButtonDisabled ? 'Add Table' : 'Add From';
+
+
+
         return (
             <>
                 {/*<div
@@ -48,12 +77,12 @@ export class ByRoom extends Component {
 
                 <div
                     className="container mx-auto mt-10 bg-white  border-4 rounded-lg shadow relative m-10 overflow-x-hidden">
-                    <button type="button"
+                    <button type="button" onClick={this.onClickWindowDownAndUp}
 
                             className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium float-end
                             mr-8  rounded-lg text-sm px-5 py-2.5 text-center"
                             data-modal-toggle="product-modal">
-
+                        {buttonText}
                     </button>
 
                     <div className="flex items-start justify-center p-5 border-b rounded-t">
@@ -68,7 +97,7 @@ export class ByRoom extends Component {
                             {this.state.id}
                         </label>*/}
                         <form action="#">
-                            <div className="grid grid-cols-6 gap-6">
+                            <div className="grid grid-cols-12 gap-6">
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="product-name"
                                            className="text-sm font-medium text-gray-900 block mb-2">ID</label>
@@ -78,14 +107,7 @@ export class ByRoom extends Component {
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                            placeholder="ID"/>
                                 </div>
-                                <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="category"
-                                           className="text-sm font-medium text-gray-900 block mb-2">Room</label>
-                                    <input type="text" name="room" id="room"
 
-                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="Title"/>
-                                </div>
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="brand"
                                            className="text-sm font-medium text-gray-900 block mb-2">Title</label>
@@ -122,14 +144,53 @@ export class ByRoom extends Component {
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-3">
-                                    <label htmlFor="price"
-                                           className="text-sm font-medium text-gray-900 block mb-2">Image Add</label>
-                                    <input type="file" name="image" id="image" accept='image/*'
-
+                                    <label htmlFor="category"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Customer
+                                        Name</label>
+                                    <input type="text" name="room" id="room"
 
                                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                           placeholder="Image"/>
+                                           placeholder="Title"/>
                                 </div>
+
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="category"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Customer
+                                        Email</label>
+                                    <input type="text" name="room" id="room"
+
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Title"/>
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="category"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Customer
+                                        Contact</label>
+                                    <input type="text" name="room" id="room"
+
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Title"/>
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="category"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Room Book</label>
+                                    <input type="text" name="room" id="room"
+
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Title"/>
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-3">
+                                    <label htmlFor="category"
+                                           className="text-sm font-medium text-gray-900 block mb-2">Date And Time</label>
+                                    <input type="text" name="room" id="room"
+
+                                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                           placeholder="Title"/>
+                                </div>
+
 
 
                             </div>
@@ -196,8 +257,8 @@ export class ByRoom extends Component {
                                 <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Customer
                                     Address
                                 </th>
-                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Room Book
-                                </th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Room Book</th>
+                                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Date And Time</th>
                                 <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Image</th>
                             </tr>
                             </thead>
@@ -230,5 +291,29 @@ export class ByRoom extends Component {
                 </div>
             </>
         );
+    }
+    private onClickWindowDownAndUp = async () => {
+        const modal = document.getElementById('product-modal');
+        const modal2 = document.getElementById('table-hide');
+        //await this.dataBaseLastId();
+
+        if (modal) {
+            modal.classList.toggle('hidden');
+            // @ts-ignore
+            modal2.classList.toggle('hidden')
+        } else {
+            console.log("modal not found")
+        }
+
+        //this.setState({isButtonDisabled: this.state.isButtonDisabled  })
+        //this.setState(this.state.isButtonDisabled ? {isButtonDisabled: false} : {isButtonDisabled: true})
+
+        // @ts-ignore
+        this.setState((prevState) => ({
+            isButtonDisabled: !prevState.isButtonDisabled,
+            buttonText: prevState.isButtonDisabled ? 'Add Table' : 'Add From'
+        }));
+
+
     }
 }
