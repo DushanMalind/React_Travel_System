@@ -7,4 +7,6 @@ router.post('/byTheRoom',CustomerController.customerByTheRoom);
 
 router.get('/getAllCustomerRoom',CustomerController.getAllCustomerRoom);
 
+router.put('/updateCustomerRoom/:id',CustomerController.updateCustomerRoom);
+
 module.exports=router;
