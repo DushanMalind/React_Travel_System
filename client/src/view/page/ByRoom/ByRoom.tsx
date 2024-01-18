@@ -226,7 +226,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
 
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="category"
-                                           className="text-sm font-medium text-emerald-500 block mb-2">Room Book</label>
+                                           className="text-sm font-medium text-emerald-500 block mb-2">Room Book (Only Edit)</label>
                                     <input type="text" name="roomsIsBooked" id="roomsIsBooked"
                                            value={this.state.roomsIsBooked} onChange={this.handleMessageInputOnChange}
                                            readOnly={false}

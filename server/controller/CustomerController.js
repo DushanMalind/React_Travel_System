@@ -32,6 +32,30 @@ const CustomerController={
         }
     },
 
+    updateCustomerRoom:async function (req,res,next) {
+        try{
+            const customerRoomId=req.params.id;
+            const customerRoomData=req.body;
+
+            const updateCustomerRoom=await CustomerRoom.findOneAndUpdate({
+                id:customerRoomId
+            },customerRoomData,
+            {new:true});
+
+            if (!updateCustomerRoom){
+                res.status(404).json({
+                    error:"CustomerRoom Not Found"
+                });
+            }
+            res.status(200).json(updateCustomerRoom);
+
+        }catch (error) {
+            res.status(500).json({
+                error:"Server Not Update Error DOWN"
+            });
+        }
+    }
+
 
 
 }
