@@ -14,6 +14,7 @@ interface RoomAcceptProductState {
 
 export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcceptProductState>{
 
+
     private api: any;
 
     constructor(props:any) {
@@ -28,6 +29,9 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
 
     render() {
         const {data}= this.props;
+
+        const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
+
 
         return (
             <>

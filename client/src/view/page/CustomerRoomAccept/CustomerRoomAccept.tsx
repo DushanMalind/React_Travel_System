@@ -84,7 +84,7 @@ export class CustomerRoomAccept extends Component {
                                className="rounded-md bg-gradient-to-br from-green-600 to-emerald-400 px-3 py-1.5 font-dm
                                text-sm font-medium text-white shadow-md shadow-green-400/50 transition-transform duration-200
                                ease-in-out hover:scale-[1.03]">
-                                <Link to="/login">Log Out</Link>
+                                <Link to="/sign">Log Out</Link>
                             </a>
                         </div>
                         <div className="relative flex items-center justify-center md:hidden ">
@@ -105,13 +105,13 @@ export class CustomerRoomAccept extends Component {
 
 
                 </div>
-               <div className="flex justify-center items-center mt-40 ">
+               <p className="flex justify-center items-center mt-40">
                    {
                        data.map((product: any) => (
                            <RoomAcceptProduct key={product.id} data={product}/>
                        ))
                    }
-               </div>
+               </p>
             </>
         );
     }

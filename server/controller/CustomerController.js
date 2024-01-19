@@ -67,7 +67,8 @@ const CustomerController={
                 error:"Server Error DOWN"
             });
         }
-    },
+    }
+
 
 
 
