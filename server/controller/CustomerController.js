@@ -58,7 +58,8 @@ const CustomerController={
 
     userCount:async function (req,res,next) {
         try{
-            const userCount=await CustomerRoom.count();
+            const userCount = await CustomerRoom.find(req.params.id).countDocuments();
+            console.log('User Count:', userCount);
             res.status(200).json(userCount);
         }catch (error) {
             console.error(error);
