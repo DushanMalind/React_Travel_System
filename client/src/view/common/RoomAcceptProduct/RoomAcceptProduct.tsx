@@ -45,11 +45,11 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
                             font-medium">{data.room}
                         </div>
-                        <div
-                            className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium 
+                      {/*  <div
+                            className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
                             ${data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
                             }`}>{data.availability}
-                        </div>
+                        </div>*/}
                     </div>
                     <div className="p-4">
 
@@ -73,6 +73,10 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                         <div className={`left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
                             ${data.roomsIsBooked === 'Booked' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
                         }`}>{data.roomsIsBooked}
+
+                        </div>
+                        <div className="left-2 px-1 py-1 m-2 rounded-md text-sm font-medium border-2">
+                            <span className="font-bold text-lg">{data.bookingDateTime}</span>
 
                         </div>
                     </div>
