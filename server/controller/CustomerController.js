@@ -67,7 +67,58 @@ const CustomerController={
                 error:"Server Error DOWN"
             });
         }
+    },
+
+    onlyBookedCustomerEmail: async function (req, res, next) {
+        try {
+
+            const requestedCustomerEmail = req.params.customerEmail;
+            const bookedOrNoBooked = await CustomerRoom.find({ customerEmail: requestedCustomerEmail });
+
+
+
+            console.log(bookedOrNoBooked);
+            res.status(200).json(bookedOrNoBooked);
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Server Error DOWN",
+            });
+        }
     }
+   /* onlyBookedOrNoBookedCheckRoom:async function (req,res,next) {
+        try {
+            const Booked=req.params.roomsIsBooked;
+            const bookedOrNoBooked=req.params.roomsIsBooked=await CustomerRoom.find({roomsIsBooked:Booked});
+            console.log(bookedOrNoBooked);
+            res.status(200).json(bookedOrNoBooked);
+
+        }catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error:"Server Error DOWN"
+            });
+        }
+    }*/
+
+/*    onlyBookedOrNoBookedCheckRoom: async function (req, res, next) {
+        try {
+            const requestedRoomsIsBooked = req.params.roomsIsBooked;
+            const bookedOrNoBooked = await CustomerRoom.find({ roomsIsBooked: requestedRoomsIsBooked });
+
+            //req.params.requestedCustomerEmail;
+            //await CustomerRoom.find({customerEmail:requestedCustomerEmail});
+
+            console.log(bookedOrNoBooked);
+            res.status(200).json(bookedOrNoBooked);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Server Error DOWN",
+            });
+        }
+    }*/
 
 
 

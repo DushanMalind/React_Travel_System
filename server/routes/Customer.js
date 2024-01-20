@@ -11,4 +11,6 @@ router.put('/updateCustomerRoom/:id',CustomerController.updateCustomerRoom);
 
 router.get('/userCount',CustomerController.userCount);
 
+router.get('/booking/:customerEmail',CustomerController.onlyBookedCustomerEmail);
+
 module.exports=router;

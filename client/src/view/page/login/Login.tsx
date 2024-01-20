@@ -5,7 +5,9 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+/*// @ts-ignore
+import { browserHistory } from 'react-router';*/
+import { createBrowserHistory } from 'history';
 
 
 interface LoginProps {
@@ -234,12 +236,25 @@ export class Login extends Component<LoginProps,LoginState> {
                         theme: "colored",
                     });
 
+                   /* const history = createBrowserHistory();
+
+                    const location = history.location;*/
+
                     // Constructing the URL with parameters
                     let redirectUrl = jsonData.isAdmin ? "/customer" : "/admin";
                     //redirectUrl += `?firstName=${jsonData.firstName}&email=${jsonData.email}`;
                     redirectUrl += `?firstName=${encodeURIComponent(jsonData.firstName)}&email=${encodeURIComponent(jsonData.email)}`;
+                   // location.search = redirectUrl;
 
                     window.location.href = redirectUrl;
+                   /* console.log(redirectUrl);
+
+                    console.log(location)
+
+                    history.push(redirectUrl, { some: 'state' });*/
+
+                    //this.props.history.push(redirectUrl);
+
                 }
             }).catch(function (error: any) {
                 console.log("Axios Error", error);

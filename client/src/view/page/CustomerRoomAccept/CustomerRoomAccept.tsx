@@ -4,6 +4,8 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {RoomAcceptProduct} from "../../common/RoomAcceptProduct/RoomAcceptProduct";
 
+
+
 export class CustomerRoomAccept extends Component {
     private api:any;
 
@@ -19,7 +21,7 @@ export class CustomerRoomAccept extends Component {
         this.fetchData()
     }
 
-    fetchData= async () =>{
+ /*   fetchData= async () =>{
         try {
             this.api.get('/customer/getAllCustomerRoom').then((res:{data:any}) =>{
                 const jsonData=res.data;
@@ -30,7 +32,36 @@ export class CustomerRoomAccept extends Component {
         }catch (error){
             console.log("Data NOT Loard",error);
         }
+    }*/
+    /*fetchData = async () => {
+        try {
+            this.api.get('/customer/booking/'+this.api.customerEmail).then((res:{data:any}) =>{
+                const jsonData=res.data;
+                this.setState({data:jsonData});
+            }).catch((error:any) =>{
+                console.log("Axios Error",error);
+            });
+        } catch (error) {
+            console.log("Axios Error", error);
+            console.log("Data NOT Loaded", error);
+        }
+    }*/
+
+    fetchData = async () => {
+
+        const signUserDetails = JSON.parse(localStorage.getItem('signUserDetails') || '{}');
+
+        try {
+            const customerEmail = signUserDetails.email; // Adjust this based on your data structure
+            const response = await this.api.get(`/customer/booking/${customerEmail}`);
+            const jsonData = response.data;
+            this.setState({ data: jsonData });
+        } catch (error) {
+            console.log("Axios Error", error);
+            console.log("Data NOT Loaded", error);
+        }
     }
+
     render() {
         // @ts-ignore
         const {data}=this.state;
@@ -105,13 +136,16 @@ export class CustomerRoomAccept extends Component {
 
 
                 </div>
-               <p className="flex justify-center items-center mt-40">
-                   {
-                       data.map((product: any) => (
-                           <RoomAcceptProduct key={product.id} data={product}/>
-                       ))
-                   }
-               </p>
+                <div
+                    className="overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
+
+                    {
+                        data.map((product: any) => (
+                            <RoomAcceptProduct key={product.id} data={product}/>
+                        ))
+                    }
+                    </div>
+
             </>
         );
     }
