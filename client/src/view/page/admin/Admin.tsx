@@ -221,7 +221,9 @@ export class Admin extends Component {
                                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                                                 />
                                             </svg>
-                                            <span className="text-gray-100">Settings</span>
+                                            <span className="text-gray-100">
+                                                <Link to={'admin/payment'}>Payment</Link>
+                                            </span>
                                         </a>
                                     </li>
                                     <li className="rounded-sm">
