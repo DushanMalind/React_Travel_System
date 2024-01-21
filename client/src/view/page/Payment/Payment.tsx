@@ -182,12 +182,17 @@ export class Payment extends Component {
                         </div>
                     </div>
 
-                    <div
+                    {/*<div
                         className="overflow-hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
                         {data.map((product: any) => (
                             <RoomAcceptProduct key={product.id} data={product}/>
                         ))}
-                    </div>
+                    </div>*/}
+
+                    {data.map((product: any) => (
+                        <RoomAcceptProduct key={product.id} data={product}/>
+                    ))}
+
                 </div>
 
 

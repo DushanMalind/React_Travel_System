@@ -36,7 +36,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
 
         return (
             <>
-                 <div id="allCard" className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
+                {/* <div id="allCard" className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
                         <img className="w-full" src={data.image}
@@ -45,11 +45,11 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
                             font-medium">{data.room}
                         </div>
-                       {/* <div
+                        <div
                             className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
                             ${data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
                             }`}>{data.availability}
-                        </div>*/}
+                        </div>
                     </div>
                     <div className="p-4">
 
@@ -65,6 +65,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                         <div className="flex items-center justify-between">
                             <span className="font-bold text-lg">${data.price}</span>
 
+
                         </div>
 
                         <div className={`left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
@@ -77,15 +78,15 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
 
                         </div>
                     </div>
-                </div>
+                </div>*/}
 
-                {/* <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+                 <div className="py-4 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
                     <div
-                        className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+                        className="mt-4 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-2 space-y-4 md:space-y-6 xl:space-y-0">
                         <div
-                            className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
+                            className="flex flex-col justify-start items-start w-full space-y-2 md:space-y-6 xl:space-y-8">
                             <div
-                                className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
+                                className="flex flex-col justify-start items-start bg-green-200 border-black border-2 rounded px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                                 <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Room Details</p>
                                 <div
                                     className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
@@ -99,16 +100,25 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                                             <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">{data.title}</h3>
                                             <div className="flex justify-start items-start flex-col space-y-2">
                                                 <p className="text-sm dark:text-white leading-none text-gray-800"><span
-                                                    className="dark:text-gray-400 text-gray-300">Type: </span>{data.room}
+                                                    className="dark:text-gray-400 text-gray-950 font-bold">Type: </span>{data.room}
                                                 </p>
                                                 <p className="text-sm dark:text-white leading-none text-gray-800"><span
-                                                    className="dark:text-gray-400 text-gray-300">Room Count: </span>{data.roomCount}
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Room Count: </span>{data.roomCount}
                                                 </p>
                                                 <p className="text-sm dark:text-white leading-none text-gray-800"><span
-                                                    className="dark:text-gray-400 text-gray-300">Description: </span>{data.description}
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Description: </span>{data.description}
                                                 </p>
                                                 <p className="text-sm dark:text-white leading-none text-gray-800"><span
-                                                    className="dark:text-gray-400 text-gray-300">Date: </span>{data.bookingDateTime}
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Date: </span>{data.bookingDateTime}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Contact: </span>{data.customerContact}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Address: </span>{data.customerAddress}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400  text-gray-950 font-bold">Email: </span>{data.customerEmail}
                                                 </p>
                                                 <div className={`left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
                             ${data.roomsIsBooked === 'Booked' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
@@ -128,7 +138,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                             </div>
                         </div>
                     </div>
-                </div>*/}
+                </div>
 
             </>
         );
