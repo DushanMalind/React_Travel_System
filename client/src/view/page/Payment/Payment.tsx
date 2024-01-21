@@ -70,45 +70,46 @@ export class Payment extends Component {
     };
 
     handleDownloadPDF = () => {
+        // Get the element with the ID "pdf-content"
         const input = document.getElementById("pdf-content");
 
-        /*if (input) {
-            html2canvas(input, { scale: 2 }).then((canvas) => {
-                const pdf = new jsPDF("p", "mm", "a4");
-                pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
-                pdf.save("payment_details.pdf");
-            });
-        }*/
-
         if (input) {
+            // Capture the content of the "pdf-content" element using html2canvas
             html2canvas(input, { scale: 2 }).then((canvas) => {
+                // Create a new jsPDF instance
                 const pdf = new jsPDF("p", "mm", "a4");
+
+                // Add the captured image of "pdf-content" to the PDF
                 pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
 
                 // Additional content: Card Details
                 pdf.setFontSize(12);
                 pdf.text("Card Details:", 10, pdf.internal.pageSize.height - 20);
 
+                // Iterate over the 'data' array and add details to the PDF
+                // Assuming 'data' is an array of objects with properties 'customerEmail' and 'price'
 
                 // @ts-ignore
                 data.forEach((product, index) => {
                     const yOffset = 30 + index * 10;
-                    pdf.text(`${index + 1}. Room Name: ${product.customerName}, Price: ${product.price}`, 10, pdf.internal.pageSize.height - yOffset);
+                    pdf.text(`${index + 1}. Room Name: ${product.customerEmail}, Price: ${product.price}`, 10, pdf.internal.pageSize.height - yOffset);
                 });
 
+                // Save the PDF with the specified filename
                 pdf.save("payment_details.pdf");
+                console.log(pdf);
             });
         }
-
-
     };
+
+
 
     render() {
         // @ts-ignore
         const { data, customerEmail, totalPayment } = this.state;
         return (
             <>
-                <div className="px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto overflow-y-hidden">
+                <div className="px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto overflow-y-scroll overflow-x-hidden">
                     <div className="flex justify-start items-start space-y-2 flex-col">
                         <h1 className="text-3xl dark:text-white lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
                             Payment Details
@@ -182,7 +183,7 @@ export class Payment extends Component {
                     </div>
 
                     <div
-                        className="overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
+                        className="overflow-hidden grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10 mx-auto p-5 sm:p-10 md:p-16">
                         {data.map((product: any) => (
                             <RoomAcceptProduct key={product.id} data={product}/>
                         ))}
