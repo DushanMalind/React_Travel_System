@@ -222,7 +222,7 @@ export class Admin extends Component {
                                                 />
                                             </svg>
                                             <span className="text-gray-100">
-                                                <Link to={'admin/payment'}>Payment</Link>
+                                                <Link to={'/admin/payment'}>Payment</Link>
                                             </span>
                                         </a>
                                     </li>

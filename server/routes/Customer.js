@@ -13,4 +13,6 @@ router.get('/userCount',CustomerController.userCount);
 
 router.get('/booking/:customerEmail',CustomerController.onlyBookedCustomerEmail);
 
+router.get('/payment/:customerEmail',CustomerController.onlyPaymentCustomerEmail);
+
 module.exports=router;

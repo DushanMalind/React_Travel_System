@@ -86,7 +86,31 @@ const CustomerController={
                 error: "Server Error DOWN",
             });
         }
+    },
+
+    onlyPaymentCustomerEmail:async function (req,res,next) {
+        try{
+            const roomPrices = await CustomerRoom.find({ customerId: req.params.customerId });
+
+            let totalRoomPrice = 0;
+
+            roomPrices.forEach(function (room) {
+                totalRoomPrice += room.price;
+            });
+
+            console.log(totalRoomPrice);
+            res.status(200).json({ totalRoomPrice });
+
+
+
+        }catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Server Error DOWN"
+            });
+        }
     }
+
    /* onlyBookedOrNoBookedCheckRoom:async function (req,res,next) {
         try {
             const Booked=req.params.roomsIsBooked;

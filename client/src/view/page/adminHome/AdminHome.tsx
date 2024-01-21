@@ -51,7 +51,7 @@ export class AdminHome extends Component <{}, State> {
                                 Total Profit
                             </div>
                             <div className="mt-1 text-3xl font-semibold text-gray-900">
-                                $ 450k
+
                             </div>
                         </div>
                         <div className="w-full px-4 py-5 bg-white rounded-lg shadow">

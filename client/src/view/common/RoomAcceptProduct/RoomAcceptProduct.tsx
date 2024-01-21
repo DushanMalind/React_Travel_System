@@ -36,7 +36,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
 
         return (
             <>
-                <div id="allCard" className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
+                 <div id="allCard" className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
                         <img className="w-full" src={data.image}
@@ -45,7 +45,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
                             font-medium">{data.room}
                         </div>
-                      {/*  <div
+                       {/* <div
                             className={`absolute top-0 left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
                             ${data.availability === 'available' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
                             }`}>{data.availability}
@@ -56,9 +56,6 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
 
                         <div className="flex items-baseline">
                             <h3 className="text-lg font-medium mb-2">{data.title}</h3>
-                            {/*<span
-                                className="inline-block bg-teal-200 text-teal-800 py-1 px-4 text-xs rounded-full
-                                uppercase font-semibold tracking-wide ml-2">New</span>*/}
                             <div className="ml-16 text-green-600 text-xs uppercase font-semibold tracking-wide">
                                 {data.roomCount}
                             </div>
@@ -81,6 +78,58 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                         </div>
                     </div>
                 </div>
+
+                {/* <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+                    <div
+                        className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+                        <div
+                            className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
+                            <div
+                                className="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
+                                <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Room Details</p>
+                                <div
+                                    className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
+                                    <div className="pb-4 md:pb-8 w-full md:w-64">
+                                        <img className="w-full" src={data.image}
+                                             alt="Product Image"/>
+                                    </div>
+                                    <div
+                                        className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
+                                        <div className="w-full flex flex-col justify-start items-start space-y-8">
+                                            <h3 className="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">{data.title}</h3>
+                                            <div className="flex justify-start items-start flex-col space-y-2">
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400 text-gray-300">Type: </span>{data.room}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400 text-gray-300">Room Count: </span>{data.roomCount}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400 text-gray-300">Description: </span>{data.description}
+                                                </p>
+                                                <p className="text-sm dark:text-white leading-none text-gray-800"><span
+                                                    className="dark:text-gray-400 text-gray-300">Date: </span>{data.bookingDateTime}
+                                                </p>
+                                                <div className={`left-2 px-1 py-1 m-2 rounded-md text-sm font-medium
+                            ${data.roomsIsBooked === 'Booked' ? 'bg-green-400 text-white' : 'bg-red-400 text-white'
+                                                }`}>{data.roomsIsBooked}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-between space-x-8 items-start w-full">
+                                            <p className="text-base dark:text-white xl:text-lg leading-6"><span
+                                                className="text-red-300">${data.price}</span></p>
+                                            <p className="text-base dark:text-white xl:text-lg leading-6">Room No :<span
+                                                className="text-gray-950">{data.id}</span></p>
+                                            <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">${data.price}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*/}
+
             </>
         );
     }
