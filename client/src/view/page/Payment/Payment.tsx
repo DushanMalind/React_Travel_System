@@ -2,6 +2,8 @@ import {Component} from "react";
 import {ToastContainer} from "react-toastify";
 import axios from "axios";
 import {RoomAcceptProduct} from "../../common/RoomAcceptProduct/RoomAcceptProduct";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 export class Payment extends Component {
     private api:any;
@@ -65,6 +67,40 @@ export class Payment extends Component {
 
     handleSendClick = () => {
         this.fetchData();
+    };
+
+    handleDownloadPDF = () => {
+        const input = document.getElementById("pdf-content");
+
+        /*if (input) {
+            html2canvas(input, { scale: 2 }).then((canvas) => {
+                const pdf = new jsPDF("p", "mm", "a4");
+                pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+                pdf.save("payment_details.pdf");
+            });
+        }*/
+
+        if (input) {
+            html2canvas(input, { scale: 2 }).then((canvas) => {
+                const pdf = new jsPDF("p", "mm", "a4");
+                pdf.addImage(canvas.toDataURL("image/png"), "PNG", 0, 0, pdf.internal.pageSize.width, pdf.internal.pageSize.height);
+
+                // Additional content: Card Details
+                pdf.setFontSize(12);
+                pdf.text("Card Details:", 10, pdf.internal.pageSize.height - 20);
+
+
+                // @ts-ignore
+                data.forEach((product, index) => {
+                    const yOffset = 30 + index * 10;
+                    pdf.text(`${index + 1}. Room Name: ${product.customerName}, Price: ${product.price}`, 10, pdf.internal.pageSize.height - yOffset);
+                });
+
+                pdf.save("payment_details.pdf");
+            });
+        }
+
+
     };
 
     render() {
@@ -131,6 +167,15 @@ export class Payment extends Component {
                                 type="button"
                             >
                                 Clear
+                                <ToastContainer/>
+                            </button>
+
+                            <button
+                                className="text-white bg-emerald-900 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button"
+                                onClick={this.handleDownloadPDF}
+                            >
+                                Download PDF
                                 <ToastContainer/>
                             </button>
                         </div>
