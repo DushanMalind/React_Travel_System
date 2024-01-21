@@ -13,7 +13,7 @@ const Payment=mongoose.Schema({
         type:String
     },
 
-    "customerPhone":{
+    "customerContact":{
         required:true,
         type:Number
     },
@@ -23,33 +23,26 @@ const Payment=mongoose.Schema({
         type:String
     },
 
-    "roomTitle":{
+    "title":{
         required:true,
         type:String
     },
 
 
     "customerPaymentDate":{
-        required:true,
-        type:Date
+        type: Date,
+        default: Date.now,
+        required: true
     },
 
-    "bookingDateTime":{
-        required:true,
-        type:Date
-    },
-
-
-    "customerRoomType":{
-        required:true,
-        type:String
-    },
-
-
-    "customerTotalPrice":{
+    "totalPayment":{
         required:true,
         type:Number
     }
 
 
 });
+
+const payment=mongoose.model('Payment',Payment);
+
+module.exports=payment;

@@ -88,7 +88,7 @@ export class RoomAcceptProduct extends Component <RoomAcceptProductProps,RoomAcc
                             className="flex flex-col justify-start items-start w-full space-y-2 md:space-y-6 xl:space-y-8">
                             <div
                                 className="flex flex-col justify-start items-start bg-green-200 border-black border-2 rounded px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-                                <p className="text-lg md:text-xl dark:text-white font-semibold leading-6 xl:leading-5 text-gray-800">Room Details</p>
+                                <p className="text-lg md:text-xl dark:text-white  leading-6 xl:leading-5 text-gray-800 font-bold">Room Details</p>
                                 <div
                                     className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
                                     <div className="pb-4 md:pb-8 w-full md:w-64">

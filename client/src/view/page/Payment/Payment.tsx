@@ -1,20 +1,46 @@
 import {Component} from "react";
-import {ToastContainer} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import axios from "axios";
 import {RoomAcceptProduct} from "../../common/RoomAcceptProduct/RoomAcceptProduct";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-export class Payment extends Component {
+interface PaymentProps {
+    data: any
+}
+
+interface PaymentState {
+    data: any
+    customerEmail: string
+    totalPayment: string
+    customerName: string
+    customerContact: string
+    customerAddress: string
+    title: string
+    customerPaymentDate: string
+
+
+
+}
+
+
+export class Payment extends Component <PaymentProps,PaymentState>{
     private api:any;
 
-    constructor(props:{} | Readonly<{}>) {
+    constructor(props: any) {
         super(props);
         this.api=axios.create({baseURL:`http://localhost:4000`})
         this.state={
             data:[],
-            customerEmail: "",
-            totalPayment: "",
+            customerEmail:'',
+            totalPayment:'',
+            customerName:'',
+            customerContact:'',
+            customerAddress:'',
+            title:'',
+            customerPaymentDate:'',
+
+
         }
     }
 
@@ -23,21 +49,6 @@ export class Payment extends Component {
     }
 
 
-
-  /*  fetchData = async () => {
-
-        // @ts-ignore
-        const { customerEmail } = this.state;
-
-        try {
-            const response = await this.api.get(`/customer/booking/${customerEmail}`);
-            const jsonData = response.data;
-            this.setState({ data: jsonData });
-        } catch (error) {
-            console.log("Axios Error", error);
-            console.log("Data NOT Loaded", error);
-        }
-    };*/
 
     fetchData = async () => {
         // @ts-ignore
@@ -48,7 +59,6 @@ export class Payment extends Component {
             const jsonData = response.data;
             this.setState({ data: jsonData });
 
-            // Calculate total payment based on the response data
             // @ts-ignore
             const totalPayment = jsonData.reduce((total, product) => {
                 return total + (product.roomsIsBooked === 'Booked' ? product.price : 0);
@@ -179,6 +189,15 @@ export class Payment extends Component {
                                 Download PDF
                                 <ToastContainer/>
                             </button>
+
+                            <button
+                                className="text-white bg-emerald-900 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button"
+                                onClick={this.handleSendClickSave}
+                            >
+                                Payment Save
+                                <ToastContainer/>
+                            </button>
                         </div>
                     </div>
 
@@ -198,5 +217,67 @@ export class Payment extends Component {
 
             </>
         );
+
     }
+
+
+   /* handleSendClickSave = async () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString();
+
+        if (this.state.data.length > 0) {
+            const firstProduct = this.state.data[0];
+
+            await this.api.post("/payment/save", {
+                customerEmail: firstProduct.customerEmail,
+                totalPayment: this.state.totalPayment,
+                customerName: firstProduct.customerName,
+                customerContact: firstProduct.customerContact,
+                customerAddress: firstProduct.customerAddress,
+                roomTitle: firstProduct.roomTitle,
+                customerPaymentDate: formattedDate,
+
+            }).then((response: any) => {
+                console.log("By Room", response);
+                toast.success("By Room Is Booking. Now You File Payment From");
+            }).catch((err: any) => {
+                toast.error("Not Save");
+            });
+        } else {
+            toast.error("No data to save. Fetch data first.");
+        }
+    };
+*/
+    handleSendClickSave = async () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString();
+
+        if (this.state.data.length > 0) {
+            const firstProduct = this.state.data[0];
+
+            try {
+                const response = await this.api.post("/payment/save", {
+                    customerEmail: firstProduct.customerEmail,
+                    totalPayment: this.state.totalPayment,
+                    customerName: firstProduct.customerName,
+                    customerContact: firstProduct.customerContact,
+                    customerAddress: firstProduct.customerAddress,
+                    title: firstProduct.title,
+                    customerPaymentDate: formattedDate,
+                });
+
+                console.log("By Room", response);
+                toast.success("You Payment SuccFully. Happy Journey");
+            } catch (err) {
+                console.error(err);
+                toast.error("Not Saved");
+            }
+        } else {
+            toast.error("No data to save. Fetch data first.");
+        }
+    };
+
+
+
+
 }
