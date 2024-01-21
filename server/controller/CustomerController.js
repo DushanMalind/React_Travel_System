@@ -90,7 +90,7 @@ const CustomerController={
 
     onlyPaymentCustomerEmail:async function (req,res,next) {
         try{
-            const roomPrices = await CustomerRoom.find({ customerId: req.params.customerId });
+           /* const roomPrices = await CustomerRoom.find({ customerId: req.params.customerId });
 
             let totalRoomPrice = 0;
 
@@ -99,7 +99,21 @@ const CustomerController={
             });
 
             console.log(totalRoomPrice);
+            res.status(200).json({ totalRoomPrice });*/
+
+            const roomPrices = await CustomerRoom.find({ customerId: req.params.customerId });
+
+            let totalRoomPrice = 0;
+
+            roomPrices.forEach(function (room) {
+                if (room.roomsIsBooked === 'Booked') {
+                    totalRoomPrice += room.price;
+                }
+            });
+
+            console.log(totalRoomPrice);
             res.status(200).json({ totalRoomPrice });
+
 
 
 
