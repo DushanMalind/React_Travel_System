@@ -123,40 +123,30 @@ const CustomerController={
                 error: "Server Error DOWN"
             });
         }
-    }
+    },
 
-   /* onlyBookedOrNoBookedCheckRoom:async function (req,res,next) {
-        try {
-            const Booked=req.params.roomsIsBooked;
-            const bookedOrNoBooked=req.params.roomsIsBooked=await CustomerRoom.find({roomsIsBooked:Booked});
-            console.log(bookedOrNoBooked);
-            res.status(200).json(bookedOrNoBooked);
+    deleteRequest:async function (req,res,next) {
+        try{
+            const customerRoomId=req.params.id;
+            const deleteCustomerRoom=await CustomerRoom.findOneAndDelete({
+                id:customerRoomId
+            });
+
+            if (!deleteCustomerRoom){
+                res.status(404).json({
+                    error:"CustomerRoom Not Found"
+                });
+            }
+            res.status(200).json(deleteCustomerRoom);
 
         }catch (error) {
-            console.error(error);
             res.status(500).json({
-                error:"Server Error DOWN"
+                error:"Server Not Delete Error DOWN"
             });
         }
-    }*/
+    }
 
-/*    onlyBookedOrNoBookedCheckRoom: async function (req, res, next) {
-        try {
-            const requestedRoomsIsBooked = req.params.roomsIsBooked;
-            const bookedOrNoBooked = await CustomerRoom.find({ roomsIsBooked: requestedRoomsIsBooked });
 
-            //req.params.requestedCustomerEmail;
-            //await CustomerRoom.find({customerEmail:requestedCustomerEmail});
-
-            console.log(bookedOrNoBooked);
-            res.status(200).json(bookedOrNoBooked);
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({
-                error: "Server Error DOWN",
-            });
-        }
-    }*/
 
 
 

@@ -250,7 +250,7 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                         </form>
 
                         <div className="p-6 border-t space-x-3 border-gray-200 rounded-b">
-                           {/* <button
+                            {/* <button
                                 className="text-white bg-emerald-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 type="button">Save all
                                 <ToastContainer
@@ -279,7 +279,11 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                                 <ToastContainer/>
                             </button>
 
-
+                            <button
+                                className="text-white bg-red-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                type="button" onClick={this.deleteRequest}>Delete Request
+                                <ToastContainer/>
+                            </button>
 
 
                         </div>
@@ -287,7 +291,8 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
                     </div>
 
 
-                    <div id="table-hide" className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 shadow-lg rounded-lg overflow-x-scroll overflow-y-scroll w-[400]">
+                    <div id="table-hide"
+                         className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 shadow-lg rounded-lg overflow-x-scroll overflow-y-scroll w-[400]">
                         <h2 className="text-2xl font-bold mb-4">By Room Datatable</h2>
                         <table id="example"
                                className="table-fixed   table align-middle mb-0 bg-white  table-responsive table-bordered table-hover  text-nowrap  ">
@@ -361,6 +366,13 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
     }
 
     private onUpdateClick = async () => {
+        const confirmed = window.confirm("Are you sure Update?");
+
+        if (!confirmed) {
+            toast.warning("Canceled.");
+            return;
+
+        }
         try {
             this.api.put('customer/updateCustomerRoom/'+this.state.id,{
 
@@ -394,6 +406,33 @@ export class ByRoom extends Component <ByRoomProps,ByRoomState> {
         }
 
 
+    }
+
+
+
+    private deleteRequest = async () => {
+        const confirmed = window.confirm("Are you sure you want to Delete Request?");
+
+        if (!confirmed) {
+            toast.warning("Canceled.");
+            return;
+
+        }
+
+        try{
+
+            this.api.delete('customer/delete/'+this.state.id).then(async (res:{data:any}) =>{
+                let jsonData=res.data;
+                console.log(jsonData);
+                toast("Delete Success");
+                await this.fetchData();
+                this.onClickClearData();
+            })
+
+        }catch (error){
+            console.log("Delete Not Form data",error)
+            toast("Delete Not Form Data "+ error);
+        }
     }
 
     private onClickClearData =  () => {

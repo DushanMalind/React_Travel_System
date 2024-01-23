@@ -15,4 +15,6 @@ router.get('/booking/:customerEmail',CustomerController.onlyBookedCustomerEmail)
 
 router.get('/payment/:customerEmail',CustomerController.onlyPaymentCustomerEmail);
 
+router.delete('/delete/:id',CustomerController.deleteRequest);
+
 module.exports=router;
