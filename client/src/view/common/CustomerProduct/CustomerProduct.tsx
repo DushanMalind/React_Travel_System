@@ -115,6 +115,14 @@ export class CustomerProduct extends Component <ProductProps,ProductState>{
     private handleClick = () => {
         //this.setState({ isFormOpen: true });
 
+        const confirmed = window.confirm("Are you sure you want to book this room?");
+
+        if (!confirmed) {
+            toast.warning("Booking canceled.");
+            return;
+
+        }
+
 
         try {
 
