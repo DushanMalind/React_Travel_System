@@ -41,7 +41,7 @@ const PaymentController={
                 {
                     $group:{
                         _id:null,
-                        total:{$sum:"$totalPayment"}
+                        total:{$sum:"$price"}
                     }
                 }
             ]);

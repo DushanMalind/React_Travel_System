@@ -32,6 +32,10 @@ const Payment=mongoose.Schema({
         type:String
     },
 
+    "price":{
+        required:true,
+        type:Number
+    },
 
     "customerPaymentDate":{
         type: Date,

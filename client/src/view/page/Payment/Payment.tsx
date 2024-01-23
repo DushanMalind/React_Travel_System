@@ -18,6 +18,7 @@ interface PaymentState {
     customerContact: string
     customerAddress: string
     title: string
+    price:number
     customerPaymentDate: string
 
 
@@ -40,6 +41,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
             customerContact:'',
             customerAddress:'',
             title:'',
+            price:0,
             customerPaymentDate:'',
 
 
@@ -299,6 +301,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
                         customerContact: product.customerContact,
                         customerAddress: product.customerAddress,
                         title: product.title,
+                        price: product.price,
                         customerPaymentDate: formattedDate,
                     });
                 }));
