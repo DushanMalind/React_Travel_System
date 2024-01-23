@@ -11,6 +11,7 @@ interface PaymentProps {
 
 interface PaymentState {
     data: any
+    id:number
     customerEmail: string
     totalPayment: string
     customerName: string
@@ -32,6 +33,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
         this.api=axios.create({baseURL:`http://localhost:4000`})
         this.state={
             data:[],
+            id:0,
             customerEmail:'',
             totalPayment:'',
             customerName:'',
@@ -248,7 +250,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
         }
     };
 */
-    handleSendClickSave = async () => {
+   /* handleSendClickSave = async () => {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString();
 
@@ -257,6 +259,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
 
             try {
                 const response = await this.api.post("/payment/save", {
+                    id: firstProduct.id,
                     customerEmail: firstProduct.customerEmail,
                     totalPayment: this.state.totalPayment,
                     customerName: firstProduct.customerName,
@@ -275,7 +278,41 @@ export class Payment extends Component <PaymentProps,PaymentState>{
         } else {
             toast.error("No data to save. Fetch data first.");
         }
+    };*/
+
+    handleSendClickSave = async () => {
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString();
+
+        const { data, totalPayment } = this.state;
+
+        if (data.length > 0) {
+            try {
+                // Use Promise.all to wait for all save requests to complete
+                // @ts-ignore
+                await Promise.all(data.map(async (product) => {
+                    await this.api.post("/payment/save", {
+                        id: product.id,
+                        customerEmail: product.customerEmail,
+                        totalPayment,
+                        customerName: product.customerName,
+                        customerContact: product.customerContact,
+                        customerAddress: product.customerAddress,
+                        title: product.title,
+                        customerPaymentDate: formattedDate,
+                    });
+                }));
+
+                toast.success("All payments saved successfully. Happy Journey");
+            } catch (err) {
+                console.error(err);
+                toast.error("Error saving payments");
+            }
+        } else {
+            toast.error("No data to save. Fetch data first.");
+        }
     };
+
 
 
 

@@ -2,6 +2,10 @@ const mongoose=require('mongoose');
 
 const Payment=mongoose.Schema({
 
+    "id":{
+        required:true,
+        type:Number
+    },
 
     "customerName":{
         required:true,
