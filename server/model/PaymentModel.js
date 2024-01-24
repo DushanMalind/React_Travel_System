@@ -46,7 +46,13 @@ const Payment=mongoose.Schema({
     "totalPayment":{
         required:true,
         type:Number
-    }
+    },
+
+    "bookingDateTime":{
+        required:true,
+        type:String
+    },
+
 
 
 });

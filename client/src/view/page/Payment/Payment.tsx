@@ -20,6 +20,7 @@ interface PaymentState {
     title: string
     price:number
     customerPaymentDate: string
+    bookingDateTime: string
 
 
 
@@ -43,6 +44,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
             title:'',
             price:0,
             customerPaymentDate:'',
+            bookingDateTime:''
 
 
         }
@@ -303,6 +305,7 @@ export class Payment extends Component <PaymentProps,PaymentState>{
                         title: product.title,
                         price: product.price,
                         customerPaymentDate: formattedDate,
+                        bookingDateTime: product.bookingDateTime
                     });
                 }));
 
