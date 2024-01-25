@@ -8,6 +8,8 @@ interface ProductProps {
 interface ProductState {
     isActive: boolean
     isButtonDisabled: boolean
+    isImagePopupOpen: boolean;
+
 }
 
 export class Product extends Component <ProductProps,ProductState>{
@@ -16,7 +18,8 @@ export class Product extends Component <ProductProps,ProductState>{
         super(props);
         this.state={
             isActive:false,
-            isButtonDisabled: false
+            isButtonDisabled: false,
+            isImagePopupOpen: false,
         }
     }
 
@@ -41,8 +44,12 @@ export class Product extends Component <ProductProps,ProductState>{
                 <div className="bg-white rounded-lg overflow-hidden shadow-lg ring-4 ring-red-500 ring-opacity-40
                     max-w-sm">
                     <div className="relative">
-                        <img className="w-full" src={data.image}
-                             alt="Product Image"/>
+                        <img
+                            className="w-full cursor-pointer"
+                            src={data.image}
+                            alt="Product Image"
+                            onClick={this.openImagePopup}
+                        />
                         <div
                             className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 m-2 rounded-md text-sm
                             font-medium">{data.room}
@@ -73,12 +80,22 @@ export class Product extends Component <ProductProps,ProductState>{
                             </button>
                         </div>
                     </div>
+                    {this.state.isImagePopupOpen && (
+                        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-75 flex items-center justify-center">
+                            <img
+                                className="max-w-full max-h-full"
+                                src={data.image}
+                                alt="Popup Image"
+                                onClick={this.closeImagePopup}
+                            />
+                        </div>
+                    )}
                 </div>
 
 
         );
 
-        function coverToBase64(file: any) {
+    /*    function coverToBase64(file: any) {
             return new Promise((resolve, reject) => {
                 const fileReader = new FileReader();
                 fileReader.readAsDataURL(file);
@@ -89,10 +106,17 @@ export class Product extends Component <ProductProps,ProductState>{
                     reject(error);
                 };
             });
-        }
+        }*/
 
     }
 
+    private openImagePopup = () => {
+        this.setState({ isImagePopupOpen: true });
+    };
+
+    private closeImagePopup = () => {
+        this.setState({ isImagePopupOpen: false });
+    };
     private onSendButtonClick =() => {
 
 
